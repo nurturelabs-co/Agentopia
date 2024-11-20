@@ -21,7 +21,9 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+"cowsay"
+]
 description = "Create and run agents and functions on Product.fun"
 dynamic = ["version"]
 keywords = []
@@ -36,7 +38,7 @@ Issues = "https://github.com/yashagarwal1994/product-fun/issues"
 Source = "https://github.com/yashagarwal1994/product-fun"
 
 [tool.hatch.version]
-path = "src/product-fun/__init__.py"
+path = "product-fun/__init__.py"
 
 [project.optional-dependencies]
 docs = [
@@ -63,16 +65,16 @@ features = [
 
 [tool.hatch.envs.quality.scripts]
 check = [
-  "black --check --diff --preview src tests",
-  "ruff src tests",
+  "black --check --diff --preview product_fun tests",
+  "ruff product_fun tests",
 ]
 format = [
-  "black --preview src tests",
-  "ruff --fix src tests",
+  "black --preview product_fun tests",
+  "ruff --fix product_fun tests",
   "check",
 ]
 typecheck = [
-  "mypy src --install-types --non-interactive",
+  "mypy product_fun --install-types --non-interactive",
 ]
 
 [tool.mypy]
