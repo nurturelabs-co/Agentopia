@@ -13,8 +13,8 @@
 
 ## 🚚 Replacements
 
-* `REPLACE_PACKAGE_NAME`: name of the package (usually the same name as the repository in which it's hosted).
-* `REPLACE_PACKAGE_DESCRIPTION`: description of the package.
-* `REPLACE_FULL_NAME`: user's full name.
-* `REPLACE_EMAIL`: user's email.
-* `REPLACE_GITHUB_USERNAME`: GitHub username of the package owner.
+* `product-fun`: name of the package (usually the same name as the repository in which it's hosted).
+* `Create and run agents and functions on Product.fun`: description of the package.
+* `Product.fun`: user's full name.
+* `yash@nurturelabs.co`: user's email.
+* `yashagarwal1994`: GitHub username of the package owner.

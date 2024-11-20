@@ -1,12 +1,12 @@
-site_name: REPLACE_PACKAGE_NAME
-site_url: https://github.com/REPLACE_GITHUB_USERNAME/REPLACE_PACKAGE_NAME
-site_author: REPLACE_FULL_NAME
-site_description: REPLACE_PACKAGE_DESCRIPTION
+site_name: product-fun
+site_url: https://github.com/yashagarwal1994/product-fun
+site_author: Product.fun
+site_description: Create and run agents and functions on Product.fun
 
-repo_name: REPLACE_GITHUB_USERNAME/REPLACE_PACKAGE_NAME
-repo_url: https://github.com/REPLACE_GITHUB_USERNAME/REPLACE_PACKAGE_NAME
+repo_name: yashagarwal1994/product-fun
+repo_url: https://github.com/yashagarwal1994/product-fun
 
-copyright: Copyright (c) 2023-present REPLACE_FULL_NAME <REPLACE_EMAIL>
+copyright: Copyright (c) 2023-present Product.fun <yash@nurturelabs.co>
 
 theme:
   name: material
@@ -38,9 +38,9 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/REPLACE_PACKAGE_NAME/
+      link: https://pypi.org/project/product-fun/
     - icon: fontawesome/brands/github
-      link: https://github.com/REPLACE_GITHUB_USERNAME
+      link: https://github.com/yashagarwal1994
     # - icon: fontawesome/brands/twitter
     #   link: https://twitter.com/REPLACE_TWITTER_USERNAME
     # - icon: fontawesome/brands/linkedin

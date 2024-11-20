@@ -1,3 +1,3 @@
-# REPLACE_PACKAGE_NAME
+# product-fun
 
-REPLACE_PACKAGE_DESCRIPTION
+Create and run agents and functions on Product.fun
