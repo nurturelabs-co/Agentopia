@@ -3,25 +3,59 @@ site_url: https://github.com/yashagarwal1994/product-fun
 site_author: Product.fun
 site_description: Create and run agents and functions on Product.fun
 
-repo_name: yashagarwal1994/product-fun
-repo_url: https://github.com/yashagarwal1994/product-fun
+repo_name: nurturelabs-co/product-fun
+repo_url: https://github.com/nurturelabs-co/Product-fun
 
 copyright: Copyright (c) 2023-present Product.fun <yash@nurturelabs.co>
-
 theme:
   name: material
   palette:
-    - scheme: default
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-  font:
-    text: Roboto
-    code: Roboto Mono
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/lightbulb-auto
+      name: Switch to light mode
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: black
+    accent: amber
+    toggle:
+      icon: material/lightbulb
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: black
+    accent: amber
+    toggle:
+      icon: material/lightbulb-outline
+      name: Switch to system preference
+  features:
+  - content.code.annotate
+  - content.code.copy
+  # - content.code.select
+  - content.footnote.tooltips
+  - content.tabs.link
+  - content.tooltips
+  - navigation.footer
+  - navigation.indexes
+  - navigation.instant
+  - navigation.instant.prefetch
+  # - navigation.instant.preview
+  - navigation.instant.progress
+  - navigation.path
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.share
+  - search.suggest
+  - toc.follow
+
+  icon:
+    repo: fontawesome/brands/github-alt
+  logo: img/faviconV2.jpeg
+  favicon: img/faviconV2.jpeg
+  language: en
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -40,7 +74,7 @@ extra:
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/product-fun/
     - icon: fontawesome/brands/github
-      link: https://github.com/yashagarwal1994
+      link: https://github.com/nurturelabs-co
     # - icon: fontawesome/brands/twitter
     #   link: https://twitter.com/REPLACE_TWITTER_USERNAME
     # - icon: fontawesome/brands/linkedin
