@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://github.com/yashagarwal1994/product-fun/</loc>
-         <lastmod>2024-11-20</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://docs.agentopia.xyz/</loc>
+         <lastmod>2024-11-27</lastmod>
     </url>
     <url>
-         <loc>https://github.com/yashagarwal1994/product-fun/license/</loc>
-         <lastmod>2024-11-20</lastmod>
-         <changefreq>daily</changefreq>
+         <loc>https://docs.agentopia.xyz/about/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/license/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/quick/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/selling/overview/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/check-balance/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/run-directly/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/run-proxy-api/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/search-services/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/wallet-setup/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/authentication/create-api-key/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/authentication/generate-signature/</loc>
+         <lastmod>2024-11-27</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.agentopia.xyz/using-services/authentication/nonce/</loc>
+         <lastmod>2024-11-27</lastmod>
     </url>
 </urlset>

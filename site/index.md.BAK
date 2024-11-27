@@ -1,0 +1,64 @@
+# Agentopia SDK
+
+## Sell via Agentopia: Register your function with Agentopia
+- build your API indenpendently using which ever framework you want, here is a sample app using FastAPI: [sample-app](./sample-app)
+- you'll need handle the following things inside your API
+    - the use will send you a hold-id -- which is a UUID
+    - you'll need to verify the hold-id and the amount -- by calling the `verify_hold` function or by calling this endpoint: `/v1/hold/{hold_id}`
+    - if the hold is valid, you can go ahead and execute the service
+    - post execution of the service, you need to call the `release_hold` function or this endpoint: `/v1/hold/{hold_id}/deduct` to charge the user for the usage
+    - return the response from the service to the user with {X-Usdc-Used: 1000} in the header -- make sure this is in USD amount * 1e6 so if you want to charge the user $1 then send {X-Usdc-Used: 1000000}
+- specify the hold amount for each endpoint in your API
+    - you can do this by setting the `hold_amount` in the `@service` decorator if you are using FastAPI and our sdk
+    - otherwise you can use something like this: https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/?h=custom+openapi#openapi-extensions to add the hold amount in your openapi specs
+        - use the `x-hold-amount` key in the operation object, eg, if you want to charge the user $1 for that endpoint then set `x-hold-amount` to 1000000
+- once you have hosted your API, we recommend Railway.app and have a quick deployment option in our sample-app
+- you can visit the [Agentopia Register Page](https://agentopia.xyz/new) and fill in the form to register your service
+- you can see the stats for your function on the [Agentopia Function Dashboard](https://agentopia.xyz/{function-slug}/dashboard)
+
+## Use the functions on Agentopia(Programmtically)
+
+### Create and fund a wallet with USDC
+    - via our frontend using [Agentopia Wallet Dashboard](https://agentopia.xyz/)
+    - via using web3.py, for cast command, see below
+
+#### Approve $1 USDC to Agentopia MicroPayment contract
+```bash
+cast call 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 --rpc-url https://mainnet.base.org "approve(address,uint256)"  0x3103c36cd78b8510B23fF3f90bC37c5BDD08156F 1000000 --private-key $PRIVATE_KEY
+```
+#### Deposit $1 USDC to Agentopia MicroPayment contract
+```bash
+cast call 0x3103c36cd78b8510B23fF3f90bC37c5BDD08156F --rpc-url https://mainnet.base.org "deposit(uint256)" 1000000 --private-key $PRIVATE_KEY
+```
+### Generate the signature
+Get the message to sign from the endpoint: `/v1/message_to_sign/`
+then sign is using your Private Key
+
+or use the `sign_message` function from our sdk by passing in the Private Key
+
+Now all requests beyond this point will need to have the `Authorization: Basic wallet_address:signature` header to be authenticated
+
+### Check your balance
+call the endpoint: `/v1/balance`
+
+### Search for functions
+call the endpoint: `/v1/search?q={query}` and we'll return the functions that match the query
+
+### Run/Use a function
+
+#### Run them directly
+- Create a hold: call the endpoint: `/v1/hold/{hold_id}` and pass in the hold amount and the hold duration
+    - You'll have to create a hold before every function call
+    - You can get the ideal hold amount and duration by calling the `/v1/function/{function_slug}` endpoint and looking at the 'hold_amount' and 'hold_duration' keys in the response
+- Send the hold id in the `X-Hold-Id` header
+- Run the function: call the endpoint: `<function_hostname>/{function_endpoint}` and pass in the query parameters as per the function's requirements, the function will deduct release the hold automatically after the function has run
+
+#### Run them via our proxy API
+
+##### Create an API Key
+You'll need an API Key to run the functions
+call the endpoint: `/v1/api-key` and pass in a name for the API Key
+
+##### Run the function
+Send the API Key in the `Authorization` header as `Bearer {api_key}`
+call the endpoint: `/v1/run/{function_slug}` and pass in the query parameters as per the function's requirements

@@ -13,8 +13,8 @@
 
 ## 🚚 Replacements
 
-* `product-fun`: name of the package (usually the same name as the repository in which it's hosted).
-* `Create and run agents and functions on Product.fun`: description of the package.
-* `Product.fun`: user's full name.
+* `agentopia`: name of the package (usually the same name as the repository in which it's hosted).
+* `Create and run agents and functions on Agentopia`: description of the package.
+* `Agentopia`: user's full name.
 * `yash@nurturelabs.co`: user's email.
 * `yashagarwal1994`: GitHub username of the package owner.

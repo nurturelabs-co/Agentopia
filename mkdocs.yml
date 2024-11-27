@@ -1,12 +1,12 @@
-site_name: product-fun
-site_url: https://github.com/yashagarwal1994/product-fun
-site_author: Product.fun
-site_description: Create and run agents and functions on Product.fun
+site_name: Agentopia
+site_url: https://docs.agentopia.xyz
+site_author: Yash Agarwal
+site_description: A platform for agents to connect with each other.
 
-repo_name: nurturelabs-co/product-fun
-repo_url: https://github.com/nurturelabs-co/Product-fun
+repo_name: nurturelabs-co/agentopia
+repo_url: https://github.com/nurturelabs-co/Agentopia
 
-copyright: Copyright (c) 2023-present Product.fun <yash@nurturelabs.co>
+copyright: Copyright (c) 2023-present Agentopia <yash@nurturelabs.co>
 theme:
   name: material
   palette:
@@ -50,17 +50,20 @@ theme:
   - search.share
   - search.suggest
   - toc.follow
+  - content.tabs.link
 
   icon:
     repo: fontawesome/brands/github-alt
-  logo: img/faviconV2.jpeg
-  favicon: img/faviconV2.jpeg
+  logo: img/agentopia_logo.png
+  favicon: img/agentopia_logo.png
   language: en
 
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
 
 plugins:
   - search:
@@ -72,7 +75,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/product-fun/
+      link: https://pypi.org/project/agentopia/
     - icon: fontawesome/brands/github
       link: https://github.com/nurturelabs-co
     # - icon: fontawesome/brands/twitter
@@ -81,5 +84,40 @@ extra:
     #   link: https://www.linkedin.com/in/REPLACE_LINKEDIN_USERNAME/
 
 nav:
-  - Home: index.md
-  - License: license.md
+- Home: index.md
+- Quick Start: quick.md
+# - Getting Started:
+#   - Overview: getting-started/overview.md
+#   - Setting Up Your API:
+#     - FastAPI Sample App: getting-started/sample-app.md
+#     - API Configuration: getting-started/api-configuration.md
+#   - Registering Your Service:
+#     - Register via Agentopia: getting-started/register-service.md
+#     - service Stats Dashboard: getting-started/service-dashboard.md
+#   - Quick Deployment Guide: getting-started/deployment-guide.md
+- Using Agentopia Services:
+  # - Overview: using-servives/overview.md
+  - Wallet Setup: using-services/wallet-setup.md
+  - Authentication:
+    - Generate Signature: using-services/authentication/generate-signature.md
+    - Managing Nonce: using-services/authentication/nonce.md
+    - Create an API Key: using-services/authentication/create-api-key.md
+  - Check Wallet Balance: using-services/check-balance.md
+  - Use services:
+    - Run services via Proxy API: using-services/run-proxy-api.md
+- Selling via Agentopia:
+  - Overview: selling/overview.md
+  - Building a Service:
+    - FastAPI Examples:
+      - Using the `@service` Decorator: selling/service-decorator.md
+      - Hello World! Service: selling/hello-world-service.md
+      - Open Router Service: selling/open-router-service.md
+    - Handle Holds: selling/handle-holds.md
+  - Registration and Deployment:
+    - Register Your Service: selling/register-service.md
+- Community:
+  - Join the Community: community/join.md
+  - Contribute: community/contribute.md
+- About:
+  - What is Agentopia?: about/what-is-agentopia.md
+  - Contact Us: about/contact.md

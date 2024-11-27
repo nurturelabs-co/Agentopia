@@ -1,64 +1,44 @@
-# Product.fun SDK
+# Welcome to the Agentopia SDK Documentation
 
-## Sell via Product.fun: Register your function with Product.fun
-- build your API indenpendently using which ever framework you want, here is a sample app using FastAPI: [sample-app](./sample-app)
-- you'll need handle the following things inside your API
-    - the use will send you a hold-id -- which is a UUID
-    - you'll need to verify the hold-id and the amount -- by calling the `verify_hold` function or by calling this endpoint: `/v1/hold/{hold_id}`
-    - if the hold is valid, you can go ahead and execute the service
-    - post execution of the service, you need to call the `release_hold` function or this endpoint: `/v1/hold/{hold_id}/deduct` to charge the user for the usage
-    - return the response from the service to the user with {X-Usdc-Used: 1000} in the header -- make sure this is in USD amount * 1e6 so if you want to charge the user $1 then send {X-Usdc-Used: 1000000}
-- specify the hold amount for each endpoint in your API
-    - you can do this by setting the `hold_amount` in the `@service` decorator if you are using FastAPI and our sdk
-    - otherwise you can use something like this: https://fastapi.tiangolo.com/advanced/path-operation-advanced-configuration/?h=custom+openapi#openapi-extensions to add the hold amount in your openapi specs
-        - use the `x-hold-amount` key in the operation object, eg, if you want to charge the user $1 for that endpoint then set `x-hold-amount` to 1000000
-- once you have hosted your API, we recommend Railway.app and have a quick deployment option in our sample-app
-- you can visit the [Product.fun Register Page](https://product.fun/new) and fill in the form to register your service
-- you can see the stats for your function on the [Product.fun Function Dashboard](https://product.fun/{function-slug}/dashboard)
+Agentopia SDK empowers developers to seamlessly integrate, sell, and use autonomous services in the AI ecosystem. Whether you want to create services for AI agents, run them programmatically, or monetize your offerings, Agentopia simplifies the process with robust tools and APIs.
 
-## Use the functions on Product.fun(Programmtically)
+## What is Agentopia?
 
-### Create and fund a wallet with USDC
-    - via our frontend using [Product.fun Wallet Dashboard](https://product.fun/)
-    - via using web3.py, for cast command, see below
+Agentopia is a next-generation platform that connects AI agents with services, APIs, and other agents. It allows:
 
-#### Approve $1 USDC to Product.fun MicroPayment contract
-```bash
-cast call 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 --rpc-url https://mainnet.base.org "approve(address,uint256)"  0x3103c36cd78b8510B23fF3f90bC37c5BDD08156F 1000000 --private-key $PRIVATE_KEY
-```
-#### Deposit $1 USDC to Product.fun MicroPayment contract
-```bash
-cast call 0x3103c36cd78b8510B23fF3f90bC37c5BDD08156F --rpc-url https://mainnet.base.org "deposit(uint256)" 1000000 --private-key $PRIVATE_KEY
-```
-### Generate the signature
-Get the message to sign from the endpoint: `/v1/authenticate/{function_slug}`
-then sign is using your Private Key
+- **Developers**: To build and monetize services with zero upfront costs.
+- **AI Agents**: To discover, pay for, and use services autonomously, without needing credit cards or banks.
+- **Users**: To integrate and pay for services/data/other AI agents seamlessly.
 
-or use the `sign_message` function from our sdk by passing in the Private Key
+## Key Features
 
-Now all requests beyond this point will need to have the `Authorization: Basic wallet_address:signature` header to be authenticated
+- **Autonomous Payments**: No credit card required—powered by USDC and [Base](https://www.base.org/).
+- **Service Discovery**: Effortlessly search for functions to extend your AI agent's capabilities.
+- **Developer-Friendly SDK**: Build APIs in your preferred framework (e.g., FastAPI) and integrate them into Agentopia with minimal setup.
+- **Transparent Monetization**: Get paid instantly for services rendered, with usage metrics available in real time.
+<!-- - **LLM Compatibility**: Build and sell services that integrate with LLMs like OpenAI and ChatGPT. -->
 
-### Check your balance
-call the endpoint: `/v1/balance`
+## Quick Links
 
-### Search for functions
-call the endpoint: `/v1/search?q={query}` and we'll return the functions that match the query
+- [Getting Started](#): Set up your environment, create APIs, and register your services.
+- [Using Functions](#): Learn how to discover, pay for, and execute services on Agentopia.
+- [Selling Services](#): A step-by-step guide to registering and monetizing your services.
+- [Testing SDK](#): Examples and test cases to validate functionality and workflows.
+- [API Reference](#): Detailed reference for the Agentopia API.
 
-### Run/Use a function
+## Why Choose Agentopia?
 
-#### Run them directly
-- Create a hold: call the endpoint: `/v1/hold/{hold_id}` and pass in the hold amount and the hold duration
-    - You'll have to create a hold before every function call
-    - You can get the ideal hold amount and duration by calling the `/v1/function/{function_slug}` endpoint and looking at the 'hold_amount' and 'hold_duration' keys in the response
-- Send the hold id in the `X-Hold-Id` header
-- Run the function: call the endpoint: `<function_hostname>/{function_endpoint}` and pass in the query parameters as per the function's requirements, the function will deduct release the hold automatically after the function has run
+Agentopia simplifies the complex process of enabling AI agents to autonomously interact with services, from payment handling to service execution. Here's why developers and AI enthusiasts trust Agentopia:
 
-#### Run them via our proxy API
+- **Streamlined API Integration**: Focus on your service logic while we handle the nitty-gritty details of payments and authentication.
+- **Decentralized Marketplace**: Empower your AI agent to interact with services in a trustless, autonomous ecosystem.
+- **Seamless Monetization**: Start earning instantly, with no gatekeeping or approval delays.
+- **Comprehensive SDK**: Built-in features for registration, authentication, balance management, and more.
 
-##### Create an API Key
-You'll need an API Key to run the functions
-call the endpoint: `/v1/api-key` and pass in a name for the API Key
+## Ready to Build with Agentopia?
 
-##### Run the function
-Send the API Key in the `Authorization` header as `Bearer {api_key}`
-call the endpoint: `/v1/run/{function_slug}` and pass in the query parameters as per the function's requirements
+Start creating today and join the movement to supercharge AI agent capabilities.
+
+[Get Started Now](#)
+
+[Contact Us](#)

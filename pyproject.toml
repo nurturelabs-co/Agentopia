@@ -1,139 +1,27 @@
-[build-system]
-build-backend = "hatchling.build"
-requires = ["hatchling"]
-
-[project]
-authors = [{name = "Product.fun"}]
-classifiers = [
-  "Topic :: Internet",
-  "Topic :: Software Development :: Libraries :: Application Frameworks",
-  "Topic :: Software Development :: Libraries :: Python Modules",
-  "Topic :: Software Development :: Libraries",
-  "Topic :: Software Development",
-  "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
-]
-dependencies = [
-"cowsay"
-]
-description = "Create and run agents and functions on Product.fun"
-dynamic = ["version"]
-keywords = []
-license = "MIT"
-name = "product-fun"
+[tool.poetry]
+name = "agentopia"
+version = "0.1.0"
+description = ""
+authors = ["Yash Agarwal <heisenberg@buffer.finance>"]
 readme = "README.md"
-requires-python = ">=3.8,<3.12"
 
-[project.urls]
-Documentation = "https://yashagarwal1994.github.io/product-fun"
-Issues = "https://github.com/yashagarwal1994/product-fun/issues"
-Source = "https://github.com/yashagarwal1994/product-fun"
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^8.3.3"
+requests = "^2.32.3"
+eth-account = "^0.13.4"
+web3 = "^7.5.0"
+pysha3 = "^1.0.2"
+pipe = "^2.2"
+pydantic-settings = "^2.6.1"
+pytz = "^2024.2"
+python-dateutil = "^2.9.0.post0"
+orjson = "^3.10.11"
+fastapi = "^0.115.5"
+openai = "^1.55.0"
+mkdocs = "^1.6.1"
 
-[tool.hatch.version]
-path = "product-fun/__init__.py"
 
-[project.optional-dependencies]
-docs = [
-  "mkdocs~=1.4.0",
-  "mkdocs-material~=8.5.4",
-  "mkdocs-git-revision-date-localized-plugin~=1.1.0",
-  "mkdocstrings[python]~=0.19.0",
-]
-quality = [
-  "black~=22.10.0",
-  "mypy~=1.4.0",
-  "pre-commit~=2.20.0",
-  "ruff~=0.0.263",
-]
-tests = [
-  "pytest~=7.1.2",
-  "pytest-cov~=4.1",
-]
-
-[tool.hatch.envs.quality]
-features = [
-  "quality",
-]
-
-[tool.hatch.envs.quality.scripts]
-check = [
-  "black --check --diff --preview product_fun tests",
-  "ruff product_fun tests",
-]
-format = [
-  "black --preview product_fun tests",
-  "ruff --fix product_fun tests",
-  "check",
-]
-typecheck = [
-  "mypy product_fun --install-types --non-interactive",
-]
-
-[tool.mypy]
-python_version = "3.8"
-check_untyped_defs = true
-ignore_missing_imports = true
-warn_return_any = true
-
-[tool.ruff]
-ignore = [
-  "E501", # line too long, handled by black
-  "B008", # do not perform function calls in argument defaults
-  "C901", # too complex
-]
-select = [
-  "E", # pycodestyle errors
-  "W", # pycodestyle warnings
-  "F", # pyflakes
-  "I", # isort
-  "C", # flake8-comprehensions
-  "B", # flake8-bugbear
-]
-
-[tool.ruff.isort]
-known-first-party = ["product-fun"]
-
-[tool.hatch.envs.tests]
-features = [
-  "tests",
-]
-
-[tool.hatch.envs.tests.scripts]
-run = "pytest --cov=product-fun --cov-report=term-missing tests/ --durations 0 -s {args:tests}"
-
-[[tool.hatch.envs.tests.matrix]]
-python = ["38", "39", "310", "311"]
-
-[tool.hatch.envs.docs]
-features = [
-  "docs",
-]
-
-[tool.hatch.envs.docs.scripts]
-build = [
-  "mkdocs build",
-]
-serve = [
-  "mkdocs serve",
-]
-
-[tool.hatch.build.targets.sdist]
-exclude = [
-  "/.github",
-  "/.vscode",
-  "/docs",
-  "/.devcontainer",
-  "/.pre-commit-config.yaml",
-  "/.gitignore",
-  "/tests",
-  "/Dockerfile",
-  "/.dockerignore",
-]
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
