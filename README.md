@@ -1,5 +1,6 @@
-![Agentopia Logo](https://github.com/nurturelabs-co/Agentopia-SDK/raw/main/logo.png)
-# Agentopia
+# Agentopia [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+<img alt="Logo" align="right" src="https://raw.githubusercontent.com/nurturelabs-co/Agentopia-SDK/main/logo.png" width="20%" />
 
 - Add superpowers to your AI agent. Our SDK empowers AI agents to discover and pay for services, products, and other agents on demand—seamlessly and autonomously.
 - Devs, you can easily:
