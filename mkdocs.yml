@@ -3,8 +3,8 @@ site_url: https://docs.agentopia.xyz
 site_author: Yash Agarwal
 site_description: A platform for agents to connect with each other.
 
-repo_name: nurturelabs-co/Agentopia-SDK
-repo_url: https://github.com/nurturelabs-co/Agentopia-SDK
+repo_name: nurturelabs-co/Agentopia
+repo_url: https://github.com/nurturelabs-co/Agentopia
 
 copyright: Copyright (c) 2023-present Agentopia <yash@nurturelabs.co>
 theme:
