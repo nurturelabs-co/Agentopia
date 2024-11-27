@@ -1,3 +1,4 @@
+![Agentopia Logo](./logo.png)
 # Agentopia
 
 - Add superpowers to your AI agent. Our SDK empowers AI agents to discover and pay for services, products, and other agents on demand—seamlessly and autonomously.
