@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "agentopia"
-version = "0.1.3"
+version = "0.1.4"
 description = ""
 authors = ["Yash Agarwal <yash@nurturelabs.co>"]
 readme = "README.md"
@@ -10,7 +10,7 @@ python = "^3.9"
 requests = "^2.0"  # Core HTTP library
 eth-account = "^0.13.4"  # Ethereum account utilities
 web3 = "^7.5"  # Ethereum/Web3 library
-pipe = "^2.2"  # Functional programming tools
+pipe = "*"  # Functional programming tools
 pydantic-settings = "^2.6"  # Config management
 python-dateutil = "^2.9"  # Date utilities
 orjson = "^3.10"  # Fast JSON parsing
