@@ -6,21 +6,19 @@ authors = ["Yash Agarwal <yash@nurturelabs.co>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-pytest = "^8.3.3"
-requests = "^2.32.3"
-eth-account = "^0.13.4"
-web3 = "^7.5.0"
-pysha3 = "^1.0.2"
-pipe = "^2.2"
-pydantic-settings = "^2.6.1"
-pytz = "^2024.2"
-python-dateutil = "^2.9.0.post0"
-orjson = "^3.10.11"
-fastapi = "^0.115.5"
-openai = "^1.55.0"
-mkdocs = "^1.6.1"
+python = "^3.6"
+requests = "^2.0"  # Core HTTP library
+eth-account = "^0.13.4"  # Ethereum account utilities
+web3 = "^7.5"  # Ethereum/Web3 library
+pipe = "^2.2"  # Functional programming tools
+pydantic-settings = "^2.6"  # Config management
+python-dateutil = "^2.9"  # Date utilities
+orjson = "^3.10"  # Fast JSON parsing
 
+[tool.poetry.dev-dependencies]
+pytest = "^8.3"  # Testing framework
+mkdocs = "^1.6"  # Documentation generator
+openai = "^1.55"  # OpenAI API client
 
 [build-system]
 requires = ["poetry-core"]
