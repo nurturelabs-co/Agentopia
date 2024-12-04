@@ -6,7 +6,7 @@ authors = ["Yash Agarwal <yash@nurturelabs.co>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.9"
 requests = "^2.0"  # Core HTTP library
 eth-account = "^0.13.4"  # Ethereum account utilities
 web3 = "^7.5"  # Ethereum/Web3 library
