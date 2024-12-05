@@ -12,20 +12,57 @@
   - Skip lengthy approval processes, no permissions required
   - Start earning revenue immediately
 
+## Contents
+- [Installation](#install-the-sdk)
+- [Using Services](#use-a-service-on-agentopia)
+  - [Funding Your Wallet](#fund-your-agentopia-wallet)
+  - [Service Usage](#use-a-service)
+- [Selling your Services](#sell-your-service-on-agentopia)
+  - [Hello World Example](#hello-world-service)
+  - [Open Router Example](#open-router-service)
+  - [Service Registration](#register-your-service)
+  - [Withdraw earnings](#withdraw-earnings-from-agentopia-wallet)
+- [Contact](#contact-us)
+
 ## Install the SDK
 
 ```bash
 pip install agentopia
 ```
 
-## Want to sell your service?
+## Use a service on Agentopia
 
-Build and sell API/data services on the Agentopia Marketplace. AI agents and users can pay for your service with USDC on Base blockchain, with usage-based pricing.
+Search and use services on Agentopia Marketplace. You can can pay for services with USDC on Base blockchain, with usage-based pricing.
 
-### Build a service and sell it on Agentopia Marketplace.
+### Fund your Agentopia Wallet
 
-#### Hello World Service
+```python
+from agentopia import Agentopia
+agentopia_client = Agentopia(private_key="your_private_key")
+agentopia_client.deposit(amount=1000_000)
+```
 
+This will initiate a deposit of 1 USDC (the values used in the SDK are in micro USDC) request which will be processed in a few minutes on the base blockchain.
+
+### Use a service
+
+```python
+from agentopia import Agentopia
+agentopia_client = Agentopia(private_key="your_private_key")
+response = agentopia_client.service.execute_via_proxy(
+    service_slug="hello-world", endpoint_path="hello_world", method="GET"
+)
+print(response)
+```
+
+## Sell your service on Agentopia
+
+Build and sell API/data services on the Agentopia Marketplace. AI agents and users can pay for your service with USDC on Base blockchain.
+
+Below are some example services using the Agentopia SDK.
+
+### Hello World Service
+You can enable agentopia payments in your endpoints simply by adding the `@payable` decorator and returning the response with the `X-Usdc-Used` header.
 ```python
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
@@ -52,8 +89,8 @@ async def hello_world(
 
 Checkout the repo: [Hello World Service](https://github.com/nurturelabs-co/agentopia-hello-world)
 
-#### Open Router Service
-
+### Open Router Service
+For more flexibility, you can use the Agentopia client to charge the user according to your app's dynamic requirements.
 ```python
 import json
 import os
@@ -227,7 +264,7 @@ service: AgentopiaServiceModel = agentopia_client.service.register(
 )
 ```
 
-### Withdraw your earnings from your Agentopia Wallet
+### Withdraw earnings from Agentopia Wallet
 
 #### Get your balance
 
@@ -246,31 +283,6 @@ agentopia_client.withdraw(amount=100000)
 ```
 
 This will initiate a withdrawal request which will be processed in a few minutes on the base blockchain.
-
-## Do want to use a service?
-
-Search and use services on Agentopia Marketplace.
-
-### Fund your Agentopia Wallet
-
-```python
-from agentopia import Agentopia
-agentopia_client = Agentopia(private_key="your_private_key")
-agentopia_client.deposit(amount=1000_000)
-```
-
-This will initiate a deposit of 1 USDC (the values used in the SDK are in micro USDC) request which will be processed in a few minutes on the base blockchain.
-
-### Use a service
-
-```python
-from agentopia import Agentopia
-agentopia_client = Agentopia(private_key="your_private_key")
-response = agentopia_client.service.execute_via_proxy(
-    service_slug="hello-world-1234", endpoint_path="hello_world", method="GET"
-)
-print(response)
-```
 
 ## Contact Us
 
