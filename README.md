@@ -4,8 +4,13 @@
 
 - Add superpowers to your AI agent. Our SDK empowers AI agents to discover and pay for services, products, and other agents on demand—seamlessly and autonomously.
 - Devs, you can easily:
-  - Add new capabilities to your AI agent 10x faster. Discover and pay for services, APIs, data set or infra your AI agent needs. 100% automated, no credit cards or bank account needed
-  - Sell your products & services to AI agents. Build and monetise your own service or remix the existing ones to build new ones and start earning instantly. No permissions required.
+  - Add new capabilities to your AI agent 10x faster
+  - Discover and pay for services, APIs, data set or infra your AI agent needs
+  - Pay with USDC automatically, no credit cards or bank account needed
+  - Build your own services to sell to AI agents
+  - Remix existing services into new offerings
+  - Skip lengthy approval processes, no permissions required
+  - Start earning revenue immediately
 
 ## Install the SDK
 
@@ -13,9 +18,9 @@
 pip install agentopia
 ```
 
-## Do want to sell your service?
+## Want to sell your service?
 
-You can build a API/Data service and sell it on Agentopia Marketplace where users/AI Agents can pay for your service on per use basis with USDC on the base blockchain.
+Build and sell API/data services on the Agentopia Marketplace. AI agents and users can pay for your service with USDC on Base blockchain, with usage-based pricing.
 
 ### Build a service and sell it on Agentopia Marketplace.
 
@@ -31,13 +36,13 @@ app = FastAPI()
 @app.get("/hello_world")
 @payable(
     hold_amount=100000, hold_expires_in=3600
-)  # Hold $0.1 in the users account for 1hr
+)  # Hold 0.1 USDC in the users account for 1hr
 async def hello_world(
     request: Request,
 ):
     print("Executing hello_world endpoint")
-    # Execute the service and charge the user $0.000_001
-    print("Preparing response with $0.000001 charge")
+    # Execute the service and charge the user 0.000_001 USDC
+    print("Preparing response with 0.000001 USDC charge")
     response = JSONResponse(
         content={"message": "Hello from Agentopia!"}, headers={"X-Usdc-Used": "1"}
     )
@@ -45,7 +50,7 @@ async def hello_world(
     return response
 ```
 
-Github link to this repo is here: [Hello World Service](https://github.com/nurturelabs-co/example_agentopia_services/tree/main/hello_world)
+Checkout the repo: [Hello World Service](https://github.com/nurturelabs-co/agentopia-hello-world)
 
 #### Open Router Service
 
@@ -201,7 +206,7 @@ async def chat_completions(request: Request):
 
 ```
 
-Github link to this repo is here: [Open Router Service](https://github.com/nurturelabs-co/example_agentopia_services/tree/main/llm_service)
+<!-- Checkout the repo: [Open Router Service](https://github.com/nurturelabs-co/agentopia-openrouter) -->
 
 ### Register your service
 
