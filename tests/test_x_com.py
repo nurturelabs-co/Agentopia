@@ -5,6 +5,9 @@ import pytest
 import requests
 from agentopia import Agentopia, AgentopiaServiceModel
 
+HOLD_AMOUNT = 1000
+HOLD_EXPIRES_IN = 600
+
 
 class TestXComService:
     @pytest.fixture(autouse=True)
@@ -56,8 +59,8 @@ class TestXComService:
                 description="A service to get user details, tweets, followers, following, etc. from X.com",
                 base_url=base_url,
                 slug=unique_slug,
-                initial_hold_amount=100000,  # $0.1 USDC
-                initial_hold_expires_in=600,  # 10 minutes
+                initial_hold_amount=HOLD_AMOUNT,  # $0.1 USDC
+                initial_hold_expires_in=HOLD_EXPIRES_IN,  # 10 minutes
                 api_schema=api_schema,
             )
 
@@ -69,8 +72,8 @@ class TestXComService:
             == "A service to get user details, tweets, followers, following, etc. from X.com"
         )
         assert service.slug == unique_slug
-        assert Decimal(service.default_hold_amount) == Decimal("100000")
-        assert service.default_hold_expires_in == 600
+        assert Decimal(service.default_hold_amount) == Decimal(HOLD_AMOUNT)
+        assert service.default_hold_expires_in == HOLD_EXPIRES_IN
         assert service.api_schema == api_schema
 
         # Get user details for a test user
@@ -93,7 +96,7 @@ class TestXComService:
 
         # Verify balance was charged
         balance = self.pf.get_balance()
-        assert balance.available_balance + 1000 == initial_balance
+        assert balance.available_balance + HOLD_AMOUNT == initial_balance
 
     def test_get_user_tweets(self) -> None:
         unique_slug = "x-com-service"
@@ -121,7 +124,7 @@ class TestXComService:
 
         # Verify balance was charged
         balance = self.pf.get_balance()
-        assert balance.available_balance + 1000 == initial_balance
+        assert balance.available_balance + HOLD_AMOUNT == initial_balance
 
     def test_search_tweets(self) -> None:
         unique_slug = "x-com-service"
@@ -152,4 +155,4 @@ class TestXComService:
 
         # Verify balance was charged
         balance = self.pf.get_balance()
-        assert balance.available_balance + 1000 == initial_balance
+        assert balance.available_balance + HOLD_AMOUNT == initial_balance
