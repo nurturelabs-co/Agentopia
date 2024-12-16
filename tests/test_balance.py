@@ -17,33 +17,40 @@ class TestAgentopia:
         self.test_key = (
             "0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a"
         )
-        self.pf = Agentopia(private_key=self.test_key)
+        self.agentopia_client = Agentopia(
+            api_url=self.api_url,
+            private_key=self.test_key,
+            micropayment_address="0xF461d09EB295f1538a6fec92072eB2F3578e121a",
+            usdc_address="0x8d63C7203d88c95c30C68283c34F743e061c2a31",
+            rpc=self.rpc_url,
+            chain_id=31337,
+        )
 
     def teardown_method(self) -> None:
         try:
-            self.pf.session.close()
+            self.agentopia_client.session.close()
         except AttributeError:
             pass
 
     def test_get_balance(self) -> None:
         # Get balance for test user
-        balance = self.pf.get_balance()
+        balance = self.agentopia_client.get_balance()
 
         # Verify balance response
         # assert isinstance(balance, Balance)
         assert balance.available_balance >= 0
 
     def test_deposit(self) -> None:
-        initial_balance = self.pf.get_balance().available_balance
+        initial_balance = self.agentopia_client.get_balance().available_balance
 
         # Deposit USDC into Agentopia
-        tx_hash = self.pf.deposit(1000000)
+        tx_hash = self.agentopia_client.deposit(1000000)
         assert isinstance(tx_hash, str)
         print(f"Deposit transaction hash: {tx_hash}")
         while True:
             # wait till the balance is updated
             # Get balance for test user
-            balance = self.pf.get_balance()
+            balance = self.agentopia_client.get_balance()
             if balance.available_balance > initial_balance:
                 break
             time.sleep(10)

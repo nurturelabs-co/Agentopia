@@ -1,9 +1,9 @@
 import base64
+import logging
 import time
 from decimal import Decimal
 from enum import Enum
 from typing import Dict, Optional
-from uuid import UUID
 
 import orjson
 import requests
@@ -17,6 +17,8 @@ from agentopia.hold import HoldManager
 from agentopia.service import ServiceManager
 from agentopia.settings import settings
 from agentopia.utility import Web3Address
+
+logger = logging.getLogger(__name__)
 
 
 def _json_default(obj):
@@ -51,6 +53,11 @@ class Agentopia:
         self,
         private_key: Optional[str] = None,
         api_key: Optional[str] = None,
+        api_url: Optional[str] = None,
+        micropayment_address: Optional[str] = None,
+        usdc_address: Optional[str] = None,
+        rpc: Optional[str] = None,
+        chain_id: Optional[int] = None,
     ):
         """Initialize the Agentopia client.
 
@@ -59,28 +66,48 @@ class Agentopia:
             api_key: API key for authentication
             api_url: Base URL for the Agentopia API
         """
-        self.api_url = settings.PRODUCT_FUN_API.rstrip("/")
-        self.session = requests.Session()
+        logger.info("Initializing Agentopia client")
+        if api_url:
+            self.api_url = api_url.rstrip("/")
+        else:
+            self.api_url = settings.AGENTOPIA_API.rstrip("/")
+        logger.debug(f"Using API URL: {self.api_url}")
 
-        private_key = private_key or settings.USER_PRIVATE_KEY
+        self.session = requests.Session()
+        private_key = private_key or settings.AGENTOPIA_USER_PRIVATE_KEY
+        if micropayment_address:
+            logger.debug(f"Setting custom micropayment address: {micropayment_address}")
+            settings.MICROPAYMENT_ADDRESS = micropayment_address
+        if usdc_address:
+            logger.debug(f"Setting custom USDC address: {usdc_address}")
+            settings.USDC_ADDRESS = usdc_address
+        if rpc:
+            logger.debug(f"Setting custom RPC: {rpc}")
+            settings.RPC = rpc
+        if chain_id:
+            logger.debug(f"Setting custom chain ID: {chain_id}")
+            settings.CHAIN_ID = chain_id
         api_key = api_key or settings.API_KEY
 
         if private_key:
+            logger.debug("Using private key authentication")
             self.account = Account.from_key(private_key)
             self.address = self.account.address
             self._setup_wallet_auth()
         elif api_key:
+            logger.debug("Using API key authentication")
             self.session.headers["Authorization"] = f"Bearer {api_key}"
         else:
+            logger.error("No authentication method provided")
             raise ValueError("Either private_key or api_key must be provided")
 
-        # Add service instance
-        # self.services = Service(self)
+        logger.info("Agentopia client initialized successfully")
 
     @property
     def service(self) -> ServiceManager:
         """Get the service manager."""
         if not hasattr(self, "_service_manager"):
+            logger.debug("Initializing service manager")
             self._service_manager = ServiceManager(self)
         return self._service_manager
 
@@ -88,6 +115,7 @@ class Agentopia:
     def hold(self) -> HoldManager:
         """Get the hold manager."""
         if not hasattr(self, "_hold_manager"):
+            logger.debug("Initializing hold manager")
             self._hold_manager = HoldManager(self)
         return self._hold_manager
 
@@ -95,57 +123,65 @@ class Agentopia:
     def api_key(self) -> APIKeyManager:
         """Get the API key manager."""
         if not hasattr(self, "_api_key_manager"):
+            logger.debug("Initializing API key manager")
             self._api_key_manager = APIKeyManager(self)
         return self._api_key_manager
 
     def _setup_wallet_auth(self):
         """Set up wallet-based authentication."""
+        logger.info("Setting up wallet authentication")
         # Get nonce for signing
         resp = self._get(f"/v1/user/{self.address}/nonce")
-        print(resp)
+        logger.debug(f"Got nonce response: {resp}")
         nonce = resp["nonce"]
         resp = self._get("/v1/platform/message_to_sign")
         message = resp["message"]
         # Get message to sign
         message = f"{message}:{nonce}"
+        logger.debug(f"Message to sign: {message}")
 
         # Sign message
         message_hash = encode_defunct(text=message)
         signed = self.account.sign_message(message_hash)
         signature = signed.signature.hex()
+        logger.debug("Message signed successfully")
 
         # Set auth header
         auth = f"{self.address}:{signature}"
         auth_bytes = auth.encode("utf-8")
         auth_b64 = base64.b64encode(auth_bytes).decode("utf-8")
         self.session.headers["Authorization"] = f"Basic {auth_b64}"
+        logger.info("Wallet authentication setup completed")
 
     def _get(self, path: str, base_url: Optional[str] = None, **kwargs) -> Dict:
         """Make GET request to API."""
+        logger.info(f"Making GET request to {base_url or self.api_url}{path}")
         url = f"{base_url or self.api_url}{path}"
         headers = kwargs.pop("headers", {})
         if base_url:
-            # Don't send auth header for external URLs
+            logger.debug("Using external URL without auth header")
             session = requests.Session()
             session.headers.update(headers)
             resp = session.get(url, **kwargs)
         else:
             resp = self.session.get(url, headers=headers, **kwargs)
         try:
-            print(f"Response text: {resp.text}")
-            print(f"Response headers: {resp.headers}")
+            logger.debug(f"Response text: {resp.text}")
+            logger.debug(f"Response headers: {resp.headers}")
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            print(f"Response text: {resp.text}")
+            logger.error(f"HTTP error occurred: {e}")
+            logger.debug(f"Response text: {resp.text}")
             raise e
         json_resp = resp.json()
-        # if "data" not in json_resp:
-        #     print(f"Response missing data field: {json_resp}")
+        logger.debug(f"Parsed JSON response: {json_resp}")
         return json_resp.get("data", json_resp)
 
     def _post(self, path: str, base_url: Optional[str] = None, **kwargs) -> Dict:
         """Make POST request to API."""
+        logger.info(f"Making POST request to {base_url or self.api_url}{path}")
         if "json" in kwargs:
+            logger.debug(f"Request JSON payload: {kwargs['json']}")
             kwargs["data"] = orjson.dumps(kwargs.pop("json"), default=_json_default)
             kwargs["headers"] = {
                 **(kwargs.get("headers", {})),
@@ -154,7 +190,7 @@ class Agentopia:
         url = f"{base_url or self.api_url}{path}"
         headers = kwargs.pop("headers", {})
         if base_url:
-            # Don't send auth header for external URLs
+            logger.debug("Using external URL without auth header")
             session = requests.Session()
             session.headers.update(headers)
             resp = session.post(url, **kwargs)
@@ -163,35 +199,42 @@ class Agentopia:
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            print(f"Response text: {resp.text}")
+            logger.error(f"HTTP error occurred: {e}")
+            logger.debug(f"Response text: {resp.text}")
             raise e
         json_resp = resp.json()
-        # if "data" not in json_resp:
-        #     print(f"Response missing data field: {json_resp}")
+        logger.debug(f"Parsed JSON response: {json_resp}")
         return json_resp.get("data", json_resp)
 
     def _put(self, path: str, data=None, **kwargs) -> Dict:
         """Make a PUT request to the API."""
+        logger.info(f"Making PUT request to {self.api_url}{path}")
         if "json" in kwargs:
+            logger.debug(f"Request JSON payload: {kwargs['json']}")
             kwargs["data"] = orjson.dumps(kwargs.pop("json"), default=_json_default)
             kwargs["headers"] = {
                 **(kwargs.get("headers", {})),
                 "Content-Type": "application/json",
             }
-        resp = self.session.put(f"{self.api_url}{path}", data=data, **kwargs)
+            data = None
+            resp = self.session.put(f"{self.api_url}{path}", **kwargs)
+        else:
+            resp = self.session.put(f"{self.api_url}{path}", data=data, **kwargs)
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            print(f"Response text: {resp.text}")
+            logger.error(f"HTTP error occurred: {e}")
+            logger.debug(f"Response text: {resp.text}")
             raise e
         json_resp = resp.json()
-        # if "data" not in json_resp:
-        #     print(f"Response missing data field: {json_resp}")
+        logger.debug(f"Parsed JSON response: {json_resp}")
         return json_resp.get("data", json_resp)
 
     def _delete(self, path: str, **kwargs) -> Dict:
         """Make a DELETE request to the API."""
+        logger.info(f"Making DELETE request to {self.api_url}{path}")
         if "json" in kwargs:
+            logger.debug(f"Request JSON payload: {kwargs['json']}")
             kwargs["data"] = orjson.dumps(kwargs.pop("json"), default=_json_default)
             kwargs["headers"] = {
                 **(kwargs.get("headers", {})),
@@ -201,75 +244,19 @@ class Agentopia:
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            print(f"Response text: {resp.text}")
+            logger.error(f"HTTP error occurred: {e}")
+            logger.debug(f"Response text: {resp.text}")
             raise e
         json_resp = resp.json()
-        # if "data" not in json_resp:
-        #     print(f"Response missing data field: {json_resp}")
+        logger.debug(f"Parsed JSON response: {json_resp}")
         return json_resp.get("data", json_resp)
 
     def get_balance(self) -> Balance:
         """Get current balance."""
-        return Balance(**self._get(f"/v1/user/{self.address}/balance"))
-
-    def create_hold(self, service_id: UUID, amount: int, expires_in: int = 300) -> UUID:
-        """Create a new hold.
-
-        Args:
-            service_id: ID of the service to create hold for
-            amount: Amount to hold in USDC (6 decimals)
-            expires_in: Hold expiration time in seconds
-
-        Returns:
-            Hold ID
-        """
-        response = self._post(
-            "/v1/hold",
-            json={"service_id": service_id, "amount": amount, "expires_in": expires_in},
-        )
-        return response["hold_id"]
-
-    def get_hold(self, hold_id: UUID) -> Dict:
-        """Get details of a specific hold.
-
-        Args:
-            hold_id: UUID of the hold to retrieve
-
-        Returns:
-            Hold details
-        """
-        return self._get(f"/v1/hold/{hold_id}")
-
-    def deduct_from_hold(
-        self,
-        hold_id: UUID,
-        deduction_amount: int,
-        input_json: Optional[Dict] = None,
-        result_json: Optional[Dict] = None,
-    ) -> Dict:
-        """Deduct from a hold and charge the specified amount.
-
-        Args:
-            hold_id: UUID of the hold to deduct from
-            deduction_amount: Amount to deduct from the hold
-            input_json: Optional input data to store with transaction
-            result_json: Optional result data to store with transaction
-
-        Returns:
-            Response indicating success
-        """
-        return self._delete(
-            f"/v1/hold/{hold_id}",
-            json={
-                "deduction_amount": deduction_amount,
-                "input_json": input_json,
-                "result_json": result_json,
-            },
-        )
-
-    def run_function(self, function_slug: str, **params) -> Dict:
-        """Run a function via the proxy API."""
-        return self._post(f"/v1/run/{function_slug}", json=params)
+        logger.info("Getting balance")
+        balance = Balance(**self._get(f"/v1/user/{self.address}/balance"))
+        logger.debug(f"Current balance: {balance}")
+        return balance
 
     def withdraw(
         self, amount: Optional[int] = None, wait: bool = False
@@ -283,6 +270,7 @@ class Agentopia:
         Returns:
             Dict containing withdrawal details including status, transaction hash, etc.
         """
+        logger.info(f"Initiating withdrawal: amount={amount}, wait={wait}")
         return (
             self._initiate_withdraw_and_wait(amount)
             if wait
@@ -300,11 +288,14 @@ class Agentopia:
         Returns:
             WithdrawalRequestResponse containing withdrawal request details
         """
+        logger.info(f"Initiating withdrawal for amount: {amount}")
         response = self._post(
             f"/v1/user/{self.address}/withdrawals",
             params={"amount": amount} if amount else None,
         )
-        return WithdrawalRequestResponse(**response)
+        withdrawal = WithdrawalRequestResponse(**response)
+        logger.debug(f"Withdrawal initiated: {withdrawal}")
+        return withdrawal
 
     def get_withdrawal_status(self, withdrawal_id: int) -> WithdrawalRequestResponse:
         """Get status of a withdrawal.
@@ -315,8 +306,11 @@ class Agentopia:
         Returns:
             WithdrawalRequestResponse containing withdrawal status, amount, transaction hash, etc.
         """
+        logger.info(f"Checking withdrawal status for ID: {withdrawal_id}")
         response = self._get(f"/v1/user/{self.address}/withdrawals/{withdrawal_id}")
-        return WithdrawalRequestResponse(**response)
+        status = WithdrawalRequestResponse(**response)
+        logger.debug(f"Withdrawal status: {status}")
+        return status
 
     def _initiate_withdraw_and_wait(
         self, amount: Optional[int] = None
@@ -329,24 +323,27 @@ class Agentopia:
         Returns:
             WithdrawalRequestResponse containing final withdrawal status including transaction hash if completed
         """
+        logger.info(f"Initiating withdrawal with wait for amount: {amount}")
         withdrawal = self._initiate_withdraw(amount)
 
         while True:
             status = self.get_withdrawal_status(withdrawal.id)
+            logger.debug(f"Current withdrawal status: {status.status}")
             if status.status in [
                 WithdrawalStatus.COMPLETED,
                 WithdrawalStatus.FAILED,
             ]:
+                logger.info(f"Withdrawal completed with status: {status.status}")
                 return status
             time.sleep(5)
 
     def deposit(self, amount: int) -> str:
         """Deposit funds."""
-        return deposit_onchain(
-            private_key=str(self.account.key.hex()) or settings.USER_PRIVATE_KEY,
+        logger.info(f"Initiating deposit of {amount}")
+        tx_hash = deposit_onchain(
+            private_key=str(self.account.key.hex())
+            or settings.AGENTOPIA_USER_PRIVATE_KEY,
             deposit_amount=amount,
         )  # type: ignore
-
-    def register_service(self, **kwargs) -> Dict:
-        """Register a service."""
-        return self._post("/v1/service", json=kwargs)
+        logger.info(f"Deposit transaction hash: {tx_hash}")
+        return tx_hash

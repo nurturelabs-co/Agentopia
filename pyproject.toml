@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "agentopia"
-version = "0.1.5"
+version = "0.1.6"
 description = ""
 authors = ["Yash Agarwal <yash@nurturelabs.co>"]
 readme = "README.md"
@@ -15,12 +15,17 @@ pydantic-settings = "^2.6"  # Config management
 python-dateutil = "^2.9"  # Date utilities
 orjson = "^3.10"  # Fast JSON parsing
 httpx = "*"
-pysha3 = "*"
+pycryptodome = "^3.21.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^8.3"  # Testing framework
 mkdocs = "^1.6"  # Documentation generator
 openai = "^1.55"  # OpenAI API client
+fastapi = "^0.110.3"
+
+
+[tool.poetry.group.dev-dependencies.dependencies]
+pytest = "^8.3.4"
 
 [build-system]
 requires = ["poetry-core"]

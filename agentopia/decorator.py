@@ -23,7 +23,7 @@ def payable(hold_amount: int, hold_expires_in: int = 3600):
         async def wrapper(*args, **kwargs):
             logging.debug("Starting payable decorator wrapper")
 
-            if settings.AGENTOPIA_LOCAL_MODEL:
+            if settings.AGENTOPIA_LOCAL_MODE:
                 logging.debug("Local model enabled, bypassing hold verification")
                 response = await func(*args, **kwargs)
                 return response

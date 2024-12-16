@@ -71,6 +71,7 @@ def read(
     log_dump = f"Read Call: {contract_address}, {settings.CHAIN_ID}, {default_block}, {function_name},  {args}"
     logger.info(log_dump if len(log_dump) < 200 else f"{log_dump[:200]}...")
     # logger.info(f"fetching function_name: {function_name}, args: {args}")
+    logger.debug(log_dump)
     try_count = 0
 
     # logger.info(f"all_providers: {all_providers}")

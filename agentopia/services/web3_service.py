@@ -6,7 +6,7 @@ from collections import defaultdict
 from typing import Dict, List
 
 import requests
-import sha3
+from Crypto.Hash import keccak
 from eth_account import Account
 from hexbytes import HexBytes
 from pipe import dedup, groupby, select, where
@@ -49,7 +49,7 @@ class PKManager(object):
         return f"account: {self.account}, pk: {self.pk}"
 
 
-pk_manager = PKManager(settings.USER_PRIVATE_KEY)
+pk_manager = PKManager(settings.AGENTOPIA_USER_PRIVATE_KEY)
 
 
 class Contract(object):
@@ -375,7 +375,7 @@ class Contract(object):
         input_type_string = ",".join(input_types)
         message = f"{data['name']}({input_type_string})"
 
-        k = sha3.keccak_256()
+        k = keccak.new(digest_bits=256)
         k.update(message.encode("utf-8"))
 
         _topic = f"0x{k.hexdigest()}"

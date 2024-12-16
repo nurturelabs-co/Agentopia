@@ -1,3 +1,4 @@
+from datetime import datetime
 from decimal import Decimal
 from typing import Dict, List, Optional, Union
 from uuid import UUID
@@ -21,10 +22,13 @@ class ServiceModel(BaseModel):
     app_url: Optional[str] = None
     logo_url: Optional[str] = None
     readme_url: Optional[str] = None
-    api_schema_url: Optional[str] = None
+    api_schema: Optional[Dict] = None
     is_active: bool = True
     service_provider_id: Web3Address
     is_public: bool = False
+    created_at: datetime
+    updated_at: datetime
+    tags: Optional[list[str]] = None
 
 
 class ServiceManager:
@@ -34,7 +38,7 @@ class ServiceManager:
         self.client = client
 
     def execute_via_proxy(
-        self, service_slug: str, endpoint_path: str, method: str
+        self, service_slug: str, endpoint_path: str, method: str, **kwargs
     ) -> Dict:
         """Execute a service by calling its endpoint through the Agentopia proxy.
 
@@ -42,6 +46,7 @@ class ServiceManager:
             service_slug: The unique identifier for the service
             endpoint_path: The path of the endpoint to call
             method: HTTP method to use (GET or POST)
+            **kwargs: Additional arguments to pass to the request (e.g. json, params)
 
         Returns:
             The response from the service endpoint
@@ -63,11 +68,11 @@ class ServiceManager:
         # execute the service
         if method.upper() == "GET":
             return self.client._get(
-                f"/v1/execute/service/{service_slug}/{endpoint_path}"
+                f"/v1/execute/service/{service_slug}/{endpoint_path}", **kwargs
             )
         elif method.upper() == "POST":
             return self.client._post(
-                f"/v1/execute/service/{service_slug}/{endpoint_path}"
+                f"/v1/execute/service/{service_slug}/{endpoint_path}", **kwargs
             )
         else:
             raise ValueError(f"Unsupported HTTP method: {method}")
@@ -106,6 +111,11 @@ class ServiceManager:
         endpoint_path = (
             endpoint_path if endpoint_path.startswith("/") else f"/{endpoint_path}"
         )
+        # this is for testing locally
+        if "http://agentopia_services" in service.base_url:
+            service.base_url = service.base_url.replace(
+                "agentopia_services", "localhost"
+            )
         # execute the service by calling base URL directly
         if method.upper() == "GET":
             with httpx.Client() as client:
@@ -137,7 +147,7 @@ class ServiceManager:
         app_url: Optional[str] = None,
         logo_url: Optional[str] = None,
         readme_url: Optional[str] = None,
-        api_schema_url: Optional[str] = None,
+        api_schema: Optional[Dict] = None,
         tags: Optional[List[str]] = None,
     ) -> ServiceModel:
         """Create a new service.
@@ -152,27 +162,26 @@ class ServiceManager:
             app_url: Optional URL to the service's web application
             logo_url: Optional URL to the service's logo
             readme_url: Optional URL to the service's documentation
-            api_schema_url: Optional URL to the service's OpenAPI schema
+            api_schema: Optional OpenAPI schema as dictionary
             tags: Optional list of tags to categorize the service
 
         Returns:
             Created service details as a Service object
         """
         data = {
-            "service": {
-                "name": name,
-                "description": description,
-                "base_url": base_url,
-                "slug": slug,
-                "initial_hold_amount": initial_hold_amount,
-                "initial_hold_expires_in": initial_hold_expires_in,
-                "app_url": app_url,
-                "logo_url": logo_url,
-                "readme_url": readme_url,
-                "api_schema_url": api_schema_url,
-            },
-            "tags": tags,
+            "name": name,
+            "description": description,
+            "base_url": base_url,
+            "slug": slug,
+            "initial_hold_amount": initial_hold_amount,
+            "initial_hold_expires_in": initial_hold_expires_in,
+            "app_url": app_url,
+            "logo_url": logo_url,
+            "readme_url": readme_url,
+            "api_schema": api_schema,
         }
+        if tags is not None:
+            data["tags"] = tags
 
         response = self.client._post("/v1/service", json=data)
         return ServiceModel(**response)
@@ -189,9 +198,9 @@ class ServiceManager:
         app_url: Optional[str] = None,
         logo_url: Optional[str] = None,
         readme_url: Optional[str] = None,
-        api_schema_url: Optional[str] = None,
+        api_schema: Optional[Dict] = None,
         tags: Optional[List[str]] = None,
-    ) -> Dict:
+    ) -> ServiceModel:
         """Update an existing service.
 
         Args:
@@ -205,37 +214,38 @@ class ServiceManager:
             app_url: Optional new app URL
             logo_url: Optional new logo URL
             readme_url: Optional new readme URL
-            api_schema_url: Optional new API schema URL
+            api_schema: Optional OpenAPI schema as dictionary
             tags: Optional new tags list
 
         Returns:
-            Updated service details
+            Updated service details as ServiceModel
         """
         data = {}
         if name is not None:
-            data["service"]["name"] = name
+            data["name"] = name
         if description is not None:
-            data["service"]["description"] = description
+            data["description"] = description
         if base_url is not None:
-            data["service"]["base_url"] = base_url
+            data["base_url"] = base_url
         if initial_hold_amount is not None:
-            data["service"]["initial_hold_amount"] = initial_hold_amount
+            data["initial_hold_amount"] = initial_hold_amount
         if initial_hold_expires_in is not None:
-            data["service"]["initial_hold_expires_in"] = initial_hold_expires_in
+            data["initial_hold_expires_in"] = initial_hold_expires_in
         if is_active is not None:
-            data["service"]["is_active"] = is_active
+            data["is_active"] = is_active
         if app_url is not None:
-            data["service"]["app_url"] = app_url
+            data["app_url"] = app_url
         if logo_url is not None:
-            data["service"]["logo_url"] = logo_url
+            data["logo_url"] = logo_url
         if readme_url is not None:
-            data["service"]["readme_url"] = readme_url
-        if api_schema_url is not None:
-            data["service"]["api_schema_url"] = api_schema_url
+            data["readme_url"] = readme_url
+        if api_schema is not None:
+            data["api_schema"] = api_schema
         if tags is not None:
             data["tags"] = tags
 
-        return self.client._put(f"/v1/service/{slug}", json=data)
+        response = self.client._put(f"/v1/service/{slug}", json=data)
+        return ServiceModel(**response)
 
     def update_path(
         self,
@@ -259,9 +269,9 @@ class ServiceManager:
         """
         data = {}
         if hold_amount is not None:
-            data["service_path"]["hold_amount"] = hold_amount
+            data["hold_amount"] = hold_amount
         if hold_expires_in is not None:
-            data["service_path"]["hold_expires_in"] = hold_expires_in
+            data["hold_expires_in"] = hold_expires_in
 
         return self.client._put(
             f"/v1/service/{slug}/path/{path}?method={method}", json=data
