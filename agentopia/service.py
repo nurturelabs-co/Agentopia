@@ -200,6 +200,7 @@ class ServiceManager:
         readme_url: Optional[str] = None,
         api_schema: Optional[Dict] = None,
         tags: Optional[List[str]] = None,
+        is_public: Optional[bool] = None,
     ) -> ServiceModel:
         """Update an existing service.
 
@@ -216,7 +217,7 @@ class ServiceManager:
             readme_url: Optional new readme URL
             api_schema: Optional OpenAPI schema as dictionary
             tags: Optional new tags list
-
+            is_public: Optional new public status
         Returns:
             Updated service details as ServiceModel
         """
@@ -234,6 +235,7 @@ class ServiceManager:
                 "readme_url": readme_url,
                 "api_schema": api_schema,
                 "tags": tags,
+                "is_public": is_public,
             }.items()
             if v is not None
         }

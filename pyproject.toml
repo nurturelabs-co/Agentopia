@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "agentopia"
-version = "0.1.7"
+version = "0.1.8"
 description = ""
 authors = ["Yash Agarwal <yash@nurturelabs.co>"]
 readme = "README.md"
