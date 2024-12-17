@@ -67,8 +67,11 @@ def payable(hold_amount: int, hold_expires_in: int = 3600):
 
             # Get amount used from headers if JSONResponse, otherwise default to 1
             amount_used = 1
-            if hasattr(response, "headers") and "X-Usdc-Used" in response.headers:
-                amount_used = int(response.headers["X-Usdc-Used"])
+            if hasattr(response, "headers"):
+                # Add CORS expose header to make X-Usdc-Used visible to client
+                response.headers["Access-Control-Expose-Headers"] = "X-Usdc-Used"
+                if "X-Usdc-Used" in response.headers:
+                    amount_used = int(response.headers["X-Usdc-Used"])
             logging.debug(f"Amount used: {amount_used}")
 
             # Release hold and charge user using hold manager
