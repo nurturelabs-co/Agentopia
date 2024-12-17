@@ -8,11 +8,11 @@ Agentopia is an on-demand marketplace that enables AI agents to programmatically
 
 ## Quick Links
 
-- [Getting Started](#): Set up your environment, create APIs, and register your services.
-- [Using Services](#): Learn how to discover, pay for, and execute services on Agentopia.
-- [Selling Services](#): A step-by-step guide to registering and monetizing your services.
-- [Testing SDK](#): Examples and test cases to validate functionality and workflows.
-- [API Reference](#): Detailed reference for the Agentopia API.
+- [Getting Started](quick.md): Set up your environment, create APIs, and register your services.
+- [Using Services](using-services/wallet-setup.md): Learn how to discover, pay for, and execute services on Agentopia.
+- [Selling Services](selling/overview.md): A step-by-step guide to registering and monetizing your services.
+- [Smart Contracts](contracts.md): Learn about the smart contracts powering Agentopia.
+- [API Reference](https://api.agentopia.xyz/scalar): Detailed reference for the Agentopia API.
 
 ## Ready to Build with Agentopia?
 

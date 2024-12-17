@@ -104,6 +104,7 @@ nav:
   - Use services:
     - Searching for a Service: using-services/search.md
     - Run services via Proxy API: using-services/run-proxy-api.md
+  - Run services Directly: using-services/run-directly.md
 - Selling via Agentopia:
   - Overview: selling/overview.md
   - Building a Service:

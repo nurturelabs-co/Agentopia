@@ -88,6 +88,6 @@ curl -X GET \
 ## Next Steps
 Now that you’ve authenticated your wallet:
 
-- [Check your balance](check-balance.md)
-- [Search for available services](search-services.md)
-- [Execute services](execute-services.md)
+- [Check your balance](../check-balance.md)
+- [Search for available services](../search.md)
+- [Execute services](../run-proxy-api.md)
