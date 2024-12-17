@@ -12,13 +12,13 @@
         <meta name="author" content="Yash Agarwal">
       
       
-        <link rel="canonical" href="https://docs.agentopia.xyz/selling/overview/">
+        <link rel="canonical" href="https://docs.agentopia.xyz/selling/service-decorator/">
       
       
-        <link rel="prev" href="../../using-services/run-proxy-api/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../service-decorator/">
+        <link rel="next" href="../hello-world-service/">
       
       
       <link rel="icon" href="../../img/agentopia_logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Overview - Agentopia</title>
+        <title>Using the `@service` Decorator - Agentopia</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#selling-via-agentopia-overview" class="md-skip">
+        <a href="#using-the-service-decorator" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Using the `@service` Decorator
             
           </span>
         </div>
@@ -293,7 +293,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../overview/" class="md-tabs__link">
           
   
     
@@ -776,6 +776,119 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Building a Service
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Building a Service
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_1" id="__nav_4_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    FastAPI Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            FastAPI Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
     
   
   
@@ -792,7 +905,7 @@
           
   
   <span class="md-ellipsis">
-    Overview
+    Using the `@service` Decorator
   </span>
   
 
@@ -803,7 +916,7 @@
         
   
   <span class="md-ellipsis">
-    Overview
+    Using the `@service` Decorator
   </span>
   
 
@@ -825,102 +938,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-choose-agentopia" class="md-nav__link">
+  <a href="#basic-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Why Choose Agentopia?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Why Choose Agentopia?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-developers" class="md-nav__link">
-    <span class="md-ellipsis">
-      For Developers
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-users" class="md-nav__link">
-    <span class="md-ellipsis">
-      For Users
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      How It Works
+      Basic Usage
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-start-example" class="md-nav__link">
+  <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start Example
+      Parameters
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
+  <a href="#response-headers" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Concepts
+      Response Headers
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Key Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-holds" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Holds
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pricing" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Pricing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-service-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Service Management
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-steps" class="md-nav__link">
+  <a href="#error-handling" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration Steps
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development
     </span>
   </a>
   
@@ -936,42 +992,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#advanced-features" class="md-nav__link">
+  <a href="#example-dynamic-charging" class="md-nav__link">
     <span class="md-ellipsis">
-      Advanced Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dynamic-pricing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dynamic Pricing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#batch-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch Processing
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
+      Example: Dynamic Charging
     </span>
   </a>
   
@@ -981,115 +1004,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Building a Service
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_2">
-            <span class="md-nav__icon md-icon"></span>
-            Building a Service
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_2_1" id="__nav_4_2_1_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    FastAPI Examples
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_2_1">
-            <span class="md-nav__icon md-icon"></span>
-            FastAPI Examples
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../service-decorator/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Using the `@service` Decorator
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1278,102 +1192,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-choose-agentopia" class="md-nav__link">
+  <a href="#basic-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      Why Choose Agentopia?
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Why Choose Agentopia?">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-developers" class="md-nav__link">
-    <span class="md-ellipsis">
-      For Developers
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-users" class="md-nav__link">
-    <span class="md-ellipsis">
-      For Users
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      How It Works
+      Basic Usage
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-start-example" class="md-nav__link">
+  <a href="#parameters" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start Example
+      Parameters
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
+  <a href="#response-headers" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Concepts
+      Response Headers
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Key Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-holds" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Holds
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-pricing" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Pricing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-service-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Service Management
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#integration-steps" class="md-nav__link">
+  <a href="#error-handling" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration Steps
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development
     </span>
   </a>
   
@@ -1389,42 +1246,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#advanced-features" class="md-nav__link">
+  <a href="#example-dynamic-charging" class="md-nav__link">
     <span class="md-ellipsis">
-      Advanced Features
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Advanced Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dynamic-pricing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dynamic Pricing
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#batch-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Batch Processing
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
+      Example: Dynamic Charging
     </span>
   </a>
   
@@ -1448,197 +1272,100 @@
   
 
 
-<h1 id="selling-via-agentopia-overview">Selling via Agentopia: Overview</h1>
-<p>Agentopia is a decentralized marketplace that enables developers to monetize their APIs and services by integrating them into the Agentopia ecosystem. With built-in payment processing using USDC (USD Coin), usage tracking, and automatic service discovery, Agentopia makes it simple to start earning from your APIs.</p>
-<h2 id="why-choose-agentopia">Why Choose Agentopia?</h2>
-<h3 id="for-developers">For Developers</h3>
-<ul>
-<li><strong>Instant Monetization</strong>: Start earning immediately with per-request pricing in USDC</li>
-<li><strong>Flexible Integration</strong>: Use your preferred API framework with our SDK</li>
-<li><strong>Automated Payments</strong>: Built-in hold system ensures fair compensation</li>
-<li><strong>Usage Analytics</strong>: Track service usage and earnings in real-time</li>
-<li><strong>AI-Ready</strong>: Your services become instantly accessible to AI agents</li>
-</ul>
-<h3 id="for-users">For Users</h3>
-<ul>
-<li><strong>Pay-per-Use</strong>: Only pay for what you consume</li>
-<li><strong>Transparent Pricing</strong>: Clear cost structure with no hidden fees</li>
-<li><strong>Secure Transactions</strong>: Built on blockchain technology</li>
-<li><strong>Service Discovery</strong>: Easy access to a growing ecosystem of APIs</li>
-</ul>
-<h2 id="how-it-works">How It Works</h2>
-<ol>
-<li><strong>Integration</strong></li>
-<li>Add Agentopia SDK to your API</li>
-<li>Configure pricing and holds</li>
-<li>
-<p>Define service metadata</p>
-</li>
-<li>
-<p><strong>Registration</strong></p>
-</li>
-<li>Register your service with Agentopia</li>
-<li>Provide OpenAPI documentation</li>
-<li>
-<p>Set default hold parameters</p>
-</li>
-<li>
-<p><strong>Deployment</strong></p>
-</li>
-<li>Deploy your service</li>
-<li>Agentopia handles discovery</li>
-<li>Monitor usage and earnings</li>
-</ol>
-<h2 id="quick-start-example">Quick Start Example</h2>
-<p>Here's a minimal example of an Agentopia-enabled endpoint:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">agentopia</span> <span class="kn">import</span> <span class="n">payable</span>
+<h1 id="using-the-service-decorator">Using the <code>@service</code> Decorator</h1>
+<p>The <code>@payable</code> decorator is a key component of Agentopia that enables payment processing for your API endpoints. It handles the hold verification, payment processing, and automatic charge deduction.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<p>Here's how to use the <code>@payable</code> decorator:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">agentopia</span> <span class="kn">import</span> <span class="n">payable</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/hello_world&quot;</span><span class="p">)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nd">@payable</span><span class="p">(</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">hold_amount</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>  <span class="c1"># Hold 0.1 USDC</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">hold_expires_in</span><span class="o">=</span><span class="mi">3600</span>  <span class="c1"># Hold for 1 hour</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="c1"># Your service logic here</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello from Agentopia!&quot;</span><span class="p">},</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-Usdc-Used&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}</span>  <span class="c1"># Charge 0.000001 USDC</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/my_endpoint&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nd">@payable</span><span class="p">(</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">hold_amount</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>  <span class="c1"># Amount in micro USDC (0.1 USDC)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">hold_expires_in</span><span class="o">=</span><span class="mi">3600</span>  <span class="c1"># Hold expiration in seconds (1 hour)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">my_endpoint</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="c1"># Your endpoint logic here</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Success!&quot;</span><span class="p">},</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-Usdc-Used&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}</span>  <span class="c1"># Charge 0.000001 USDC</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="p">)</span>
 </code></pre></div>
-<h2 id="key-concepts">Key Concepts</h2>
-<h3 id="1-holds">1. Holds</h3>
+<h2 id="parameters">Parameters</h2>
 <ul>
-<li>Temporary fund reservations</li>
-<li>Ensures available balance</li>
-<li>Flexible consumption</li>
-<li>Automatic expiration</li>
+<li><code>hold_amount</code>: The amount to hold in micro USDC (6 decimal places)</li>
+<li>Example: <code>100000</code> = 0.1 USDC</li>
+<li>
+<p>This is the maximum amount that can be charged for this request</p>
+</li>
+<li>
+<p><code>hold_expires_in</code>: Time in seconds before the hold expires</p>
+</li>
+<li>Default: 3600 (1 hour)</li>
+<li>After expiration, the hold becomes invalid</li>
 </ul>
-<h3 id="2-pricing">2. Pricing</h3>
+<h2 id="response-headers">Response Headers</h2>
+<p>The decorator looks for the <code>X-Usdc-Used</code> header in your response to determine how much to charge the user:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-Usdc-Used&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}</span>  <span class="c1"># Charge 0.000001 USDC</span>
+</code></pre></div>
+<p>If no header is provided, it defaults to charging 1 micro USDC.</p>
+<h2 id="error-handling">Error Handling</h2>
+<p>The decorator automatically handles several error cases:</p>
 <ul>
-<li>Per-request charging</li>
-<li>Dynamic pricing support</li>
-<li>Micro-transaction capable</li>
-<li>Automatic settlement</li>
+<li>Missing hold ID: Returns 402 Payment Required</li>
+<li>Invalid hold ID: Returns 402 Payment Required</li>
+<li>Hold verification failure: Returns 402 Payment Required</li>
+<li>Payment processing failure: Returns 500 Internal Server Error</li>
 </ul>
-<h3 id="3-service-management">3. Service Management</h3>
-<ul>
-<li>Automatic registration</li>
-<li>Version control</li>
-<li>Usage statistics</li>
-<li>Performance monitoring</li>
-</ul>
-<h2 id="integration-steps">Integration Steps</h2>
-<ol>
-<li>
-<p><strong>Setup</strong>
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>agentopia
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Configuration</strong>
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">schema</span> <span class="kn">import</span> <span class="n">ServiceConfig</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">config</span> <span class="o">=</span> <span class="n">ServiceConfig</span><span class="p">(</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Your Service&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Service description&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">slug</span><span class="o">=</span><span class="s2">&quot;your-service&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">default_hold_amount</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">default_hold_expires_in</span><span class="o">=</span><span class="mi">3600</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">)</span>
-</code></pre></div></p>
-</li>
-<li>
-<p><strong>Implementation</strong></p>
-</li>
-<li>Add <code>@payable</code> decorator to endpoints</li>
-<li>Configure hold amounts</li>
-<li>
-<p>Set charge amounts</p>
-</li>
-<li>
-<p><strong>Registration</strong></p>
-</li>
-<li>Register with Agentopia</li>
-<li>Configure service details</li>
-<li>Set pricing parameters</li>
-</ol>
+<h2 id="local-development">Local Development</h2>
+<p>For local development, you can enable <code>AGENTOPIA_LOCAL_MODE</code> in your environment to bypass hold verification:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AGENTOPIA_LOCAL_MODE</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
 <h2 id="best-practices">Best Practices</h2>
 <ol>
-<li><strong>Pricing Strategy</strong></li>
-<li>Set competitive rates</li>
-<li>Consider operational costs</li>
+<li>Set reasonable hold amounts</li>
+<li>Hold amount should cover your maximum expected charge</li>
 <li>
-<p>Plan for scaling</p>
+<p>Don't set unnecessarily high holds as it locks user funds</p>
 </li>
 <li>
-<p><strong>Hold Management</strong></p>
+<p>Choose appropriate expiration times</p>
 </li>
-<li>Appropriate hold amounts</li>
-<li>Reasonable expiration times</li>
+<li>Set expiration based on your expected processing time</li>
 <li>
-<p>Error handling</p>
-</li>
-<li>
-<p><strong>Documentation</strong></p>
-</li>
-<li>Clear API documentation</li>
-<li>Usage examples</li>
-<li>
-<p>Pricing transparency</p>
+<p>Longer operations need longer hold times</p>
 </li>
 <li>
-<p><strong>Monitoring</strong></p>
+<p>Be precise with charges</p>
 </li>
-<li>Track usage patterns</li>
-<li>Monitor performance</li>
-<li>Analyze user behavior</li>
+<li>Always specify exact charges via <code>X-Usdc-Used</code></li>
+<li>
+<p>Charge only for actual usage</p>
+</li>
+<li>
+<p>Handle errors gracefully</p>
+</li>
+<li>Catch and handle payment-related exceptions</li>
+<li>Provide clear error messages to users</li>
 </ol>
-<h2 id="advanced-features">Advanced Features</h2>
-<h3 id="dynamic-pricing">Dynamic Pricing</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/process&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nd">@payable</span><span class="p">(</span><span class="n">hold_amount</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>  <span class="c1"># Hold 1 USDC</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="c1"># Calculate cost based on processing</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">cost</span> <span class="o">=</span> <span class="n">calculate_processing_cost</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<h2 id="example-dynamic-charging">Example: Dynamic Charging</h2>
+<p>Here's an example of dynamic charging based on usage:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/process_text&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nd">@payable</span><span class="p">(</span><span class="n">hold_amount</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">hold_expires_in</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">process_text</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="c1"># Calculate charge based on text length</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">char_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">charge</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">char_count</span> <span class="o">//</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># 1 micro USDC per 100 chars</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">},</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-Usdc-Used&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">cost</span><span class="p">)}</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">process_text_somehow</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">},</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-Usdc-Used&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">charge</span><span class="p">)}</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">)</span>
 </code></pre></div>
-<h3 id="batch-processing">Batch Processing</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/batch&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nd">@payable</span><span class="p">(</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">hold_amount</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span>  <span class="c1"># Hold 5 USDC</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">hold_expires_in</span><span class="o">=</span><span class="mi">7200</span>  <span class="c1"># 2 hours</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">)</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">batch_process</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]):</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">total_cost</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        <span class="n">cost</span> <span class="o">=</span> <span class="n">process_item</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="n">total_cost</span> <span class="o">+=</span> <span class="n">cost</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;item&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">,</span> <span class="s2">&quot;cost&quot;</span><span class="p">:</span> <span class="n">cost</span><span class="p">})</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="n">results</span><span class="p">},</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;X-Usdc-Used&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">total_cost</span><span class="p">)}</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    <span class="p">)</span>
-</code></pre></div>
-<h2 id="next-steps">Next Steps</h2>
-<ol>
-<li><a href="../hello-world-service/">Set up your first service</a></li>
-<li><a href="../service-decorator/">Learn about the service decorator</a></li>
-<li><a href="../handle-holds/">Understand hold management</a></li>
-<li><a href="../register-service/">Register your service</a></li>
-</ol>
-<p>Join the Agentopia ecosystem today and start monetizing your APIs with ease!</p>
+<p>This example charges based on the input text length, with a minimum charge of 1 micro USDC.</p>
 
 
 
@@ -1661,7 +1388,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-27T00:14:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-27</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-17T12:13:43+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-17</span>
   </span>
 
     
@@ -1671,7 +1398,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-27T00:14:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-27</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-17T12:13:43+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-17</span>
   </span>
 
     
@@ -1708,7 +1435,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../using-services/run-proxy-api/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Run services via Proxy API">
+          <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1718,20 +1445,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Run services via Proxy API
+                Overview
               </div>
             </div>
           </a>
         
         
           
-          <a href="../service-decorator/" class="md-footer__link md-footer__link--next" aria-label="Next: Using the `@service` Decorator">
+          <a href="../hello-world-service/" class="md-footer__link md-footer__link--next" aria-label="Next: Hello World! Service">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Using the `@service` Decorator
+                Hello World! Service
               </div>
             </div>
             <div class="md-footer__button md-icon">

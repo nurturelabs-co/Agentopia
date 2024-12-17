@@ -1,27 +1,42 @@
 # Selling via Agentopia: Overview
 
-Agentopia makes it simple for developers to monetize their APIs and services by integrating them into the Agentopia ecosystem. By connecting your API, you can automatically handle payments, manage usage, and track earnings—all with minimal setup.
+Agentopia is a decentralized marketplace that enables developers to monetize their APIs and services by integrating them into the Agentopia ecosystem. With built-in payment processing using USDC (USD Coin), usage tracking, and automatic service discovery, Agentopia makes it simple to start earning from your APIs.
 
-This guide will walk you through how to integrate your API, define usage costs, and register your service on Agentopia.
+## Why Choose Agentopia?
 
-## Why Sell Your API on Agentopia?
+### For Developers
+- **Instant Monetization**: Start earning immediately with per-request pricing in USDC
+- **Flexible Integration**: Use your preferred API framework with our SDK
+- **Automated Payments**: Built-in hold system ensures fair compensation
+- **Usage Analytics**: Track service usage and earnings in real-time
+- **AI-Ready**: Your services become instantly accessible to AI agents
 
-- **Instant Monetization**: Charge users per request, with payments handled automatically via USDC.
-- **Hassle-Free Integration**: Use your preferred API framework (e.g., FastAPI) with built-in support for Agentopia.
-- **Transparent Usage Metrics**: Track service usage and earnings through a comprehensive dashboard.
-- **Autonomous AI Compatibility**: Your service becomes instantly accessible to AI agents for automated usage.
+### For Users
+- **Pay-per-Use**: Only pay for what you consume
+- **Transparent Pricing**: Clear cost structure with no hidden fees
+- **Secure Transactions**: Built on blockchain technology
+- **Service Discovery**: Easy access to a growing ecosystem of APIs
 
-## Key Steps to Monetize Your API
+## How It Works
 
-1. **Set Up Your API**: Use any framework to create your API. (We recommend FastAPI for its simplicity and performance.)
-2. **Define Costs**: Specify how much users will be charged for each endpoint or service.
-3. **Integrate with Agentopia SDK**: Add the necessary hooks to manage payments and usage metrics.
-4. **Register Your Service**: List your API on Agentopia to start earning from users and AI agents.
-5. **Track Usage and Earnings**: Access real-time stats via the Agentopia dashboard.
+1. **Integration**
+   - Add Agentopia SDK to your API
+   - Configure pricing and holds
+   - Define service metadata
 
-## Example: Connecting Your API to Agentopia
+2. **Registration**
+   - Register your service with Agentopia
+   - Provide OpenAPI documentation
+   - Set default hold parameters
 
-Here's a simple example of an API endpoint that charges users $0.000001 (1 micro USDC) per request using Agentopia's SDK:
+3. **Deployment**
+   - Deploy your service
+   - Agentopia handles discovery
+   - Monitor usage and earnings
+
+## Quick Start Example
+
+Here's a minimal example of an Agentopia-enabled endpoint:
 
 ```python
 from fastapi import FastAPI, Request
@@ -32,38 +47,133 @@ app = FastAPI()
 
 @app.get("/hello_world")
 @payable(
-    hold_amount=100000, hold_expires_in=3600
-)  # Hold $0.1 in the user's account for 1 hour
-async def hello_world(
-    request: Request,
-):
-    print("Executing hello_world endpoint")
-    # Execute the service and charge the user $0.000_001
-    print("Preparing response with $0.000001 charge")
-    response = JSONResponse(
-        content={"message": "Hello from Agentopia!"}, headers={"X-Usdc-Used": "1"}
+    hold_amount=100000,  # Hold 0.1 USDC
+    hold_expires_in=3600  # Hold for 1 hour
+)
+async def hello_world(request: Request):
+    # Your service logic here
+    return JSONResponse(
+        content={"message": "Hello from Agentopia!"},
+        headers={"X-Usdc-Used": "1"}  # Charge 0.000001 USDC
     )
-    print("Returning response")
-    return response
 ```
 
-## What's Happening in the Example?
+## Key Concepts
 
-- **Hold Amount**: The `@payable` decorator specifies a hold of $0.10 (100,000 micro USDC) in the user's wallet for 1 hour.
-- **Charge**: Once the endpoint is executed, the service deducts $0.000001 from the user's account.
-- **Response**: The `X-Usdc-Used` header in the response confirms the amount charged for the service.
+### 1. Holds
+- Temporary fund reservations
+- Ensures available balance
+- Flexible consumption
+- Automatic expiration
 
-## Benefits of Agentopia Integration
+### 2. Pricing
+- Per-request charging
+- Dynamic pricing support
+- Micro-transaction capable
+- Automatic settlement
 
-- **Automated Payments**: Agentopia handles the payment process, including holds, deductions, and refunds if needed.
-- **Secure Transactions**: Built on blockchain technology, ensuring transparency and trust.
-- **Customizable Pricing**: You define the hold amount and charges for each endpoint, giving you full control over monetization.
-- **Developer Dashboard**: Monitor service usage, track earnings, and update configurations through an intuitive dashboard.
+### 3. Service Management
+- Automatic registration
+- Version control
+- Usage statistics
+- Performance monitoring
+
+## Integration Steps
+
+1. **Setup**
+   ```bash
+   pip install agentopia
+   ```
+
+2. **Configuration**
+   ```python
+   from schema import ServiceConfig
+   
+   config = ServiceConfig(
+       name="Your Service",
+       description="Service description",
+       slug="your-service",
+       default_hold_amount=100000,
+       default_hold_expires_in=3600
+   )
+   ```
+
+3. **Implementation**
+   - Add `@payable` decorator to endpoints
+   - Configure hold amounts
+   - Set charge amounts
+
+4. **Registration**
+   - Register with Agentopia
+   - Configure service details
+   - Set pricing parameters
+
+## Best Practices
+
+1. **Pricing Strategy**
+   - Set competitive rates
+   - Consider operational costs
+   - Plan for scaling
+
+2. **Hold Management**
+   - Appropriate hold amounts
+   - Reasonable expiration times
+   - Error handling
+
+3. **Documentation**
+   - Clear API documentation
+   - Usage examples
+   - Pricing transparency
+
+4. **Monitoring**
+   - Track usage patterns
+   - Monitor performance
+   - Analyze user behavior
+
+## Advanced Features
+
+### Dynamic Pricing
+```python
+@app.post("/process")
+@payable(hold_amount=1000000)  # Hold 1 USDC
+async def process(request: Request, data: dict):
+    # Calculate cost based on processing
+    cost = calculate_processing_cost(data)
+    result = process_data(data)
+    
+    return JSONResponse(
+        content={"result": result},
+        headers={"X-Usdc-Used": str(cost)}
+    )
+```
+
+### Batch Processing
+```python
+@app.post("/batch")
+@payable(
+    hold_amount=5000000,  # Hold 5 USDC
+    hold_expires_in=7200  # 2 hours
+)
+async def batch_process(request: Request, items: List[dict]):
+    total_cost = 0
+    results = []
+    
+    for item in items:
+        cost = process_item(item)
+        total_cost += cost
+        results.append({"item": item, "cost": cost})
+    
+    return JSONResponse(
+        content={"results": results},
+        headers={"X-Usdc-Used": str(total_cost)}
+    )
+```
 
 ## Next Steps
 
-1. [Learn how to configure API payments](#)
-2. [Register your service on Agentopia](#) 
-3. [Monitor usage and earnings](#)
+1. [Set up your first service](hello-world-service.md)
+2. [Learn about the service decorator](service-decorator.md)
+3. [Understand hold management](handle-holds.md)
+4. [Register your service](register-service.md)
 
-Start monetizing your APIs with Agentopia today and unlock new revenue streams for your services!
+Join the Agentopia ecosystem today and start monetizing your APIs with ease!

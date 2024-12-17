@@ -4,6 +4,14 @@ API Keys are used to authenticate your wallet when making requests to the servic
 
 ## Create an API Key
 
+You can create an API key in one of the following ways:
+
+### Using the Web Interface
+
+Visit [https://agentopia.xyz/api-keys](https://agentopia.xyz/api-keys) to generate an API key through our web interface.
+
+### Using Code
+
 === "Using Python SDK"
     ```python
     from agentopia import Agentopia
@@ -14,9 +22,3 @@ API Keys are used to authenticate your wallet when making requests to the servic
     API Docs: [Create API Key](https://api.agentopia.xyz/scalar#tag/api-keys/POST/v1/user/{user_address}/api-key)
 
 Example Response:
-
-```json
-{
-    "api_key": "sk-ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-}
-```

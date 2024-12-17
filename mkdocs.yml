@@ -1,8 +1,7 @@
 site_name: Agentopia
 site_url: https://docs.agentopia.xyz
 site_author: Yash Agarwal
-site_description: Empower you AI agents with any service or sell your services to a new customer base: AI agents
-
+site_description: On-demand Services/Data marketplace for AI Agents
 repo_name: nurturelabs-co/Agentopia
 repo_url: https://github.com/nurturelabs-co/Agentopia
 
@@ -82,7 +81,6 @@ extra:
     #   link: https://twitter.com/REPLACE_TWITTER_USERNAME
     # - icon: fontawesome/brands/linkedin
     #   link: https://www.linkedin.com/in/REPLACE_LINKEDIN_USERNAME/
-
 nav:
 - Home: index.md
 - Quick Start: quick.md
@@ -104,6 +102,7 @@ nav:
     - Create an API Key: using-services/authentication/create-api-key.md
   - Check Wallet Balance: using-services/check-balance.md
   - Use services:
+    - Searching for a Service: using-services/search.md
     - Run services via Proxy API: using-services/run-proxy-api.md
 - Selling via Agentopia:
   - Overview: selling/overview.md
@@ -111,13 +110,13 @@ nav:
     - FastAPI Examples:
       - Using the `@service` Decorator: selling/service-decorator.md
       - Hello World! Service: selling/hello-world-service.md
-      - Open Router Service: selling/open-router-service.md
     - Handle Holds: selling/handle-holds.md
   - Registration and Deployment:
     - Register Your Service: selling/register-service.md
-- Community:
-  - Join the Community: community/join.md
-  - Contribute: community/contribute.md
-- About:
-  - What is Agentopia?: about/what-is-agentopia.md
-  - Contact Us: about/contact.md
+- Smart Contracts: contracts.md
+# - Community:
+#   - Join the Community: community/join.md
+#   - Contribute: community/contribute.md
+# - About:
+#   - What is Agentopia?: about/what-is-agentopia.md
+#   - Contact Us: about/contact.md

@@ -10,7 +10,7 @@ You can create and manage your wallet directly through Agentopia's Wallet Dashbo
 
 ### Option 1: Use the Agentopia Wallet Dashboard
 
-1. Visit the [Agentopia Wallet Dashboard](https://app.agentopia.xyz) (Coming Soon)
+1. Visit the [Agentopia Wallet Dashboard](https://agentopia.xyz/dashboard)
 2. Sign in with your preferred wallet (e.g., MetaMask, WalletConnect)
 3. Your wallet is now linked to Agentopia, and you can start using it
 
@@ -34,12 +34,12 @@ You'll need to approve USDC for the [Agentopia MicroPayment Contract](../contrac
 === "Using Cast Command"
 
     ```bash
-    cast call 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 \
+    cast call 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 \
     --rpc-url https://mainnet.base.org \
-    "approve(address,uint256)" 0x3103c36cd78b8510B23fF3f90bC37c5BDD08156F 1000000 \
+    "approve(address,uint256)" 0xaEF2fc1f54AE5b260cA2123B27bE6E79C3AAFa7a 1000000 \
     --private-key $PRIVATE_KEY
 
-    cast call 0x3103c36cd78b8510B23fF3f90bC37c5BDD08156F \
+    cast call 0xaEF2fc1f54AE5b260cA2123B27bE6E79C3AAFa7a \
     --rpc-url https://mainnet.base.org \
     "deposit(uint256)" 1000000 \
     --private-key $PRIVATE_KEY

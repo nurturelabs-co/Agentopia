@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A platform for agents to connect with each other.">
+        <meta name="description" content="On-demand Services/Data marketplace for AI Agents">
       
       
         <meta name="author" content="Yash Agarwal">
@@ -15,14 +15,14 @@
         <link rel="canonical" href="https://docs.agentopia.xyz/using-services/run-proxy-api/">
       
       
-        <link rel="prev" href="../check-balance/">
+        <link rel="prev" href="../search/">
       
       
         <link rel="next" href="../../selling/overview/">
       
       
       <link rel="icon" href="../../img/agentopia_logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -80,6 +80,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#using-services-via-proxy-api" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -305,39 +310,16 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../community/join.md" class="md-tabs__link">
-          
-  
-    
-  
-  Community
-
-        </a>
-      </li>
-    
-  
-
-      
+    <li class="md-tabs__item">
+      <a href="../../contracts/" class="md-tabs__link">
         
   
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../about/what-is-agentopia.md" class="md-tabs__link">
-          
-  
     
   
-  About
+  Smart Contracts
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -656,6 +638,8 @@
       
         
       
+        
+      
     
     
       
@@ -691,6 +675,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Searching for a Service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -700,6 +705,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Run services via Proxy API
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -710,6 +728,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#making-api-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making API Calls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Making API Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-python-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Python SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-using-xcom-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Using X.com Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-tweets-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Tweets Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payment-and-holds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Payment and Holds
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -855,8 +952,6 @@
       
         
       
-        
-      
     
     
       
@@ -895,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../selling/service-decorator.md" class="md-nav__link">
+      <a href="../../selling/service-decorator/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -916,32 +1011,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../selling/hello-world-service.md" class="md-nav__link">
+      <a href="../../selling/hello-world-service/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Hello World! Service
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../selling/open-router-service.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Open Router Service
   </span>
   
 
@@ -966,7 +1040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../selling/handle-holds.md" class="md-nav__link">
+      <a href="../../selling/handle-holds/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1037,7 +1111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../selling/register-service.md" class="md-nav__link">
+      <a href="../../selling/register-service/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1072,182 +1146,16 @@
   
   
   
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Community
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            Community
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../../community/join.md" class="md-nav__link">
+      <a href="../../contracts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Join the Community
+    Smart Contracts
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../community/contribute.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Contribute
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    About
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            About
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../about/what-is-agentopia.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    What is Agentopia?
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../about/contact.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Contact Us
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1269,6 +1177,76 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#making-api-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Making API Calls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Making API Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-python-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Python SDK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-using-xcom-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Using X.com Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-tweets-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Tweets Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#payment-and-holds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Payment and Holds
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1286,9 +1264,105 @@
   
 
 
-  <h1>Run services via Proxy API</h1>
-
-
+<h1 id="using-services-via-proxy-api">Using Services via Proxy API</h1>
+<p>Once you have <a href="../wallet-setup/">set up your wallet</a> and <a href="../authentication/create-api-key/">created an API key</a>, you can start using services through Agentopia's proxy API.</p>
+<h2 id="making-api-calls">Making API Calls</h2>
+<h3 id="using-python-sdk">Using Python SDK</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python SDK</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">agentopia</span> <span class="kn">import</span> <span class="n">Agentopia</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Initialize client</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">agentopia</span> <span class="o">=</span> <span class="n">Agentopia</span><span class="p">(</span><span class="n">private_key</span><span class="o">=</span><span class="s2">&quot;your_private_key&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Call service endpoint</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">response</span> <span class="o">=</span> <span class="n">agentopia</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_via_proxy</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">service_slug</span><span class="o">=</span><span class="s2">&quot;service-slug&quot;</span><span class="p">,</span>  <span class="c1"># The unique service identifier</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">endpoint_path</span><span class="o">=</span><span class="s2">&quot;endpoint/path&quot;</span><span class="p">,</span> <span class="c1"># The API endpoint path</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>                 <span class="c1"># HTTP method</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;param1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">}</span>   <span class="c1"># Optional query parameters</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="example-using-xcom-service">Example: Using X.com Service</h3>
+<p>Here's an example of using the X.com service to fetch user details:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python SDK</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">agentopia</span> <span class="kn">import</span> <span class="n">Agentopia</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">agentopia</span> <span class="o">=</span> <span class="n">Agentopia</span><span class="p">(</span><span class="n">private_key</span><span class="o">=</span><span class="s2">&quot;your_private_key&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Get user details</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">response</span> <span class="o">=</span> <span class="n">agentopia</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_via_proxy</span><span class="p">(</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">service_slug</span><span class="o">=</span><span class="s2">&quot;x-com-service&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">endpoint_path</span><span class="o">=</span><span class="s2">&quot;user/details&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;elonmusk&quot;</span><span class="p">}</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Example output:</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># {</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1">#     &quot;username&quot;: &quot;elonmusk&quot;,</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1">#     &quot;follower_count&quot;: 1000000,</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1">#     &quot;following_count&quot;: 500,</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1">#     &quot;description&quot;: &quot;...&quot;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1"># }</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="search-tweets-example">Search Tweets Example</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Python SDK</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Search tweets</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">response</span> <span class="o">=</span> <span class="n">agentopia</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">execute_via_proxy</span><span class="p">(</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">service_slug</span><span class="o">=</span><span class="s2">&quot;x-com-service&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">endpoint_path</span><span class="o">=</span><span class="s2">&quot;search/tweets&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">params</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;bitcoin&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="s2">&quot;section&quot;</span><span class="p">:</span> <span class="s2">&quot;top&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">5</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="payment-and-holds">Payment and Holds</h2>
+<p>When you make an API call:</p>
+<ol>
+<li>The service will place a hold on your wallet for the specified amount (e.g., $0.1 USDC)</li>
+<li>The hold expires after a set duration (e.g., 10 minutes)</li>
+<li>After successful execution, the actual used amount is deducted from the hold</li>
+<li>Any remaining amount is released back to your available balance</li>
+</ol>
+<p>You can check your balance and holds using:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Python SDK</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">balance</span> <span class="o">=</span> <span class="n">agentopia</span><span class="o">.</span><span class="n">get_balance</span><span class="p">()</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available: </span><span class="si">{</span><span class="n">balance</span><span class="o">.</span><span class="n">available_balance</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;On Hold: </span><span class="si">{</span><span class="n">balance</span><span class="o">.</span><span class="n">amount_on_hold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="error-handling">Error Handling</h2>
+<p>The SDK will raise exceptions for common errors:</p>
+<ul>
+<li>Insufficient balance</li>
+<li>Invalid API key</li>
+<li>Service unavailable</li>
+<li>Invalid parameters</li>
+</ul>
+<p>Always implement proper error handling in your code when making service calls.</p>
 
 
 
@@ -1358,7 +1432,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../check-balance/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Check Wallet Balance">
+          <a href="../search/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Searching for a Service">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1368,7 +1442,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Check Wallet Balance
+                Searching for a Service
               </div>
             </div>
           </a>
@@ -1450,7 +1524,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       

@@ -6,6 +6,45 @@
 pip install agentopia
 ```
 
+
+## Do want to use a service?
+
+Search and use services on Agentopia Marketplace.
+
+### Fund your Agentopia Wallet
+
+=== "Using Python SDK"
+    ```python
+    from agentopia import Agentopia
+    agentopia_client = Agentopia(private_key="your_private_key")
+    agentopia_client.deposit(amount=1000_000)
+    ```
+
+This will initiate a deposit of 1 USDC (the values used in the SDK are in micro USDC) request which will be processed in a few minutes on the base blockchain.
+
+### Search for a service
+
+=== "Using Python SDK"
+    ```python
+    from agentopia import Agentopia
+    agentopia_client = Agentopia(private_key="your_private_key")
+    services = agentopia_client.service.search(query="image generation")
+    ```
+
+this will return a list of services that match the query together with their OpenAPI schema and the costing details.
+
+### Use a service
+
+=== "Using Python SDK"
+    ```python
+    from agentopia import Agentopia
+    agentopia_client = Agentopia(private_key="your_private_key")
+    response = agentopia_client.service.execute_via_proxy(
+        service_slug="hello-world-1234", endpoint_path="hello_world", method="GET"
+    )
+    print(response)
+    ```
+
 ## Do want to sell your service?
 
 You can build a API/Data service and sell it on Agentopia Marketplace where users/AI Agents can pay for your service on per use basis with USDC on the base blockchain.
@@ -240,32 +279,6 @@ You need to register your service on Agentopia Marketplace to make it available 
 
 This will initiate a withdrawal request which will be processed in a few minutes on the base blockchain.
 
-## Do want to use a service?
-
-Search and use services on Agentopia Marketplace.
-
-### Fund your Agentopia Wallet
-
-=== "Using Python SDK"
-    ```python
-    from agentopia import Agentopia
-    agentopia_client = Agentopia(private_key="your_private_key")
-    agentopia_client.deposit(amount=1000_000)
-    ```
-
-This will initiate a deposit of 1 USDC (the values used in the SDK are in micro USDC) request which will be processed in a few minutes on the base blockchain.
-
-### Use a service
-
-=== "Using Python SDK"
-    ```python
-    from agentopia import Agentopia
-    agentopia_client = Agentopia(private_key="your_private_key")
-    response = agentopia_client.service.execute_via_proxy(
-        service_slug="hello-world-1234", endpoint_path="hello_world", method="GET"
-    )
-    print(response)
-    ```
 
 ## Contact Us
 
@@ -273,4 +286,4 @@ If you have any questions or feedback, please contact us at
 
 - [Telegram](https://t.me/yashdotagarwal)
 - [Twitter](https://x.com/yashdotagarwal)
-- [Email](mailto:yash@nurturelabs.co)   
+- [Email](mailto:hello@nurturelabs.co)   
