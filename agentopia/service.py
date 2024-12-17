@@ -142,8 +142,8 @@ class ServiceManager:
         description: str,
         base_url: str,
         slug: str,
-        initial_hold_amount: Union[Decimal, int],
-        initial_hold_expires_in: int,
+        default_hold_amount: Union[Decimal, int],
+        default_hold_expires_in: int,
         app_url: Optional[str] = None,
         logo_url: Optional[str] = None,
         readme_url: Optional[str] = None,
@@ -157,8 +157,8 @@ class ServiceManager:
             description: Description of what the service does
             base_url: Base URL where the service is hosted
             slug: URL-friendly identifier for the service
-            initial_hold_amount: Default amount to hold for service calls in USDC (6 decimals)
-            initial_hold_expires_in: Default hold expiration time in seconds
+            default_hold_amount: Default amount to hold for service calls in USDC (6 decimals)
+            default_hold_expires_in: Default hold expiration time in seconds
             app_url: Optional URL to the service's web application
             logo_url: Optional URL to the service's logo
             readme_url: Optional URL to the service's documentation
@@ -173,8 +173,8 @@ class ServiceManager:
             "description": description,
             "base_url": base_url,
             "slug": slug,
-            "initial_hold_amount": initial_hold_amount,
-            "initial_hold_expires_in": initial_hold_expires_in,
+            "default_hold_amount": default_hold_amount,
+            "default_hold_expires_in": default_hold_expires_in,
             "app_url": app_url,
             "logo_url": logo_url,
             "readme_url": readme_url,
@@ -192,8 +192,8 @@ class ServiceManager:
         name: Optional[str] = None,
         description: Optional[str] = None,
         base_url: Optional[str] = None,
-        initial_hold_amount: Optional[Decimal] = None,
-        initial_hold_expires_in: Optional[int] = None,
+        default_hold_amount: Optional[Decimal] = None,
+        default_hold_expires_in: Optional[int] = None,
         is_active: Optional[bool] = None,
         app_url: Optional[str] = None,
         logo_url: Optional[str] = None,
@@ -208,8 +208,8 @@ class ServiceManager:
             name: Optional new name
             description: Optional new description
             base_url: Optional new base URL
-            initial_hold_amount: Optional new default hold amount in USDC (6 decimals)
-            initial_hold_expires_in: Optional new default hold expiration in seconds
+            default_hold_amount: Optional new default hold amount in USDC (6 decimals)
+            default_hold_expires_in: Optional new default hold expiration in seconds
             is_active: Optional new active status
             app_url: Optional new app URL
             logo_url: Optional new logo URL
@@ -220,29 +220,23 @@ class ServiceManager:
         Returns:
             Updated service details as ServiceModel
         """
-        data = {}
-        if name is not None:
-            data["name"] = name
-        if description is not None:
-            data["description"] = description
-        if base_url is not None:
-            data["base_url"] = base_url
-        if initial_hold_amount is not None:
-            data["initial_hold_amount"] = initial_hold_amount
-        if initial_hold_expires_in is not None:
-            data["initial_hold_expires_in"] = initial_hold_expires_in
-        if is_active is not None:
-            data["is_active"] = is_active
-        if app_url is not None:
-            data["app_url"] = app_url
-        if logo_url is not None:
-            data["logo_url"] = logo_url
-        if readme_url is not None:
-            data["readme_url"] = readme_url
-        if api_schema is not None:
-            data["api_schema"] = api_schema
-        if tags is not None:
-            data["tags"] = tags
+        data = {
+            k: v
+            for k, v in {
+                "name": name,
+                "description": description,
+                "base_url": base_url,
+                "default_hold_amount": default_hold_amount,
+                "default_hold_expires_in": default_hold_expires_in,
+                "is_active": is_active,
+                "app_url": app_url,
+                "logo_url": logo_url,
+                "readme_url": readme_url,
+                "api_schema": api_schema,
+                "tags": tags,
+            }.items()
+            if v is not None
+        }
 
         response = self.client._put(f"/v1/service/{slug}", json=data)
         return ServiceModel(**response)
