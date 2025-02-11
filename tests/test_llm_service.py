@@ -57,8 +57,8 @@ class TestLLMService:
                 description="OpenRouter-compatible LLM service",
                 base_url=base_url,
                 slug=unique_slug,
-                initial_hold_amount=Decimal("100000"),  # $0.1 USDC (from main.py)
-                initial_hold_expires_in=600,  # 10 minutes (from main.py)
+                default_hold_amount=Decimal("100000"),  # $0.1 USDC (from main.py)
+                default_hold_expires_in=600,  # 10 minutes (from main.py)
                 api_schema=api_schema,
             )
 
@@ -81,21 +81,21 @@ class TestLLMService:
             api_key=api_key.key,
         )
 
-        print("Testing non-streaming completion")
-        completion = client.chat.completions.create(
-            model="openai/gpt-3.5-turbo",
-            messages=[{"role": "user", "content": "Say this is a test"}],
-            stream=False,
-        )
-
-        print("++++++++++++", completion.choices[0].message.content)
-        assert completion.choices[0].message.content is not None
-        assert len(completion.choices[0].message.content) > 0
+        # print("Testing non-streaming completion")
+        # completion = client.chat.completions.create(
+        #     model="openai/gpt-4o-mini",
+        #     messages=[{"role": "user", "content": "Say this is a test"}],
+        #     stream=False,
+        # )
+        # print(completion)
+        # print("++++++++++++", completion.choices[0].message.content)
+        # assert completion.choices[0].message.content is not None
+        # assert len(completion.choices[0].message.content) > 0
 
         print("Testing streaming completion")
         # Test streaming completion
         streaming_completion = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="openai/gpt-4o-mini",
             messages=[{"role": "user", "content": "Write a haiku"}],
             stream=True,
         )

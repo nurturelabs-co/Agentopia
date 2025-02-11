@@ -170,7 +170,7 @@ class Agentopia:
             logger.debug(f"Response headers: {resp.headers}")
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            logger.error(f"HTTP error occurred: {e}")
+            logger.error(f"HTTP error occurred in _get: {e}")
             logger.debug(f"Response text: {resp.text}")
             raise e
         json_resp = resp.json()
@@ -199,7 +199,7 @@ class Agentopia:
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            logger.error(f"HTTP error occurred: {e}")
+            logger.error(f"HTTP error occurred in _post: {e}")
             logger.debug(f"Response text: {resp.text}")
             raise e
         json_resp = resp.json()
@@ -223,7 +223,7 @@ class Agentopia:
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            logger.error(f"HTTP error occurred: {e}")
+            logger.error(f"HTTP error occurred in _put: {e}")
             logger.debug(f"Response text: {resp.text}")
             raise e
         json_resp = resp.json()
@@ -244,8 +244,12 @@ class Agentopia:
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            logger.error(f"HTTP error occurred: {e}")
-            logger.debug(f"Response text: {resp.text}")
+            logger.info("+++++++++++++++++++")
+            logger.error(f"HTTP error occurred in _delete: {e}")
+            logger.info("+++++++++++++++++++")
+            logger.info(f"Response text: {resp.text}")
+            logger.info("+++++++++++++++++++")
+
             raise e
         json_resp = resp.json()
         logger.debug(f"Parsed JSON response: {json_resp}")
