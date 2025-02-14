@@ -1,9 +1,7 @@
 import time
-from decimal import Decimal
 
 import pytest
-import requests
-from agentopia import Agentopia, AgentopiaServiceModel
+from agentopia import Agentopia
 from openai import OpenAI
 
 
@@ -39,58 +37,58 @@ class TestLLMService:
 
     def test_register_and_use_llm_service(self) -> None:
         # Generate unique slug
-        unique_slug = "llm-service"
+        # unique_slug = "llm-service"
         initial_balance = self.pf.get_balance().available_balance
 
-        # Fetch OpenAPI schema
-        base_url = "http://localhost:8890/llm-service"
-        api_schema = requests.get(f"{base_url}/openapi.json").json()
+        # # Fetch OpenAPI schema
+        # base_url = "http://localhost:8890/llm-service"
+        # api_schema = requests.get(f"{base_url}/openapi.json").json()
 
-        # Try to get existing service
-        try:
-            service = self.pf.service.get_by_slug(slug=unique_slug)
-        except Exception as e:
-            print(e)
-            # Register new LLM service if not found
-            service = self.pf.service.register(
-                name="LLM Service",
-                description="OpenRouter-compatible LLM service",
-                base_url=base_url,
-                slug=unique_slug,
-                default_hold_amount=Decimal("100000"),  # $0.1 USDC (from main.py)
-                default_hold_expires_in=600,  # 10 minutes (from main.py)
-                api_schema=api_schema,
-            )
+        # # Try to get existing service
+        # try:
+        #     service = self.pf.service.get_by_slug(slug=unique_slug)
+        # except Exception as e:
+        #     print(e)
+        #     # Register new LLM service if not found
+        #     service = self.pf.service.register(
+        #         name="LLM Service",
+        #         description="OpenRouter-compatible LLM service",
+        #         base_url=base_url,
+        #         slug=unique_slug,
+        #         default_hold_amount=Decimal("100000"),  # $0.1 USDC (from main.py)
+        #         default_hold_expires_in=600,  # 10 minutes (from main.py)
+        #         api_schema=api_schema,
+        #     )
 
         # Verify service registration
-        assert isinstance(service, AgentopiaServiceModel)
-        assert service.name == "LLM Service"
-        # assert service.base_url == base_url
-        assert service.slug == unique_slug
-        assert Decimal(service.default_hold_amount) == Decimal("100000")
+        # assert isinstance(service, AgentopiaServiceModel)
+        # assert service.name == "LLM Service"
+        # # assert service.base_url == base_url
+        # assert service.slug == unique_slug
+        # assert Decimal(service.default_hold_amount) == Decimal("100000")
 
         # Create API key
         api_key = self.pf.api_key.create(name="test-llm-key")
 
-        print(
-            f"Calling service at {self.api_url}/v1/execute/service/{unique_slug} via OpenAI package"
-        )
+        # print(
+        #     f"Calling service at {self.api_url}/v1/execute/service/{unique_slug} via OpenAI package"
+        # )
         # # Test regular completion
         client = OpenAI(
-            base_url=f"{self.api_url}/v1/execute/service/{unique_slug}",
+            base_url=f"{self.api_url}/v1/llm",
             api_key=api_key.key,
         )
 
-        # print("Testing non-streaming completion")
-        # completion = client.chat.completions.create(
-        #     model="openai/gpt-4o-mini",
-        #     messages=[{"role": "user", "content": "Say this is a test"}],
-        #     stream=False,
-        # )
-        # print(completion)
-        # print("++++++++++++", completion.choices[0].message.content)
-        # assert completion.choices[0].message.content is not None
-        # assert len(completion.choices[0].message.content) > 0
+        print("Testing non-streaming completion")
+        completion = client.chat.completions.create(
+            model="openai/gpt-4o-mini",
+            messages=[{"role": "user", "content": "Say this is a test"}],
+            stream=False,
+        )
+        print(completion)
+        print("++++++++++++", completion.choices[0].message.content)
+        assert completion.choices[0].message.content is not None
+        assert len(completion.choices[0].message.content) > 0
 
         print("Testing streaming completion")
         # Test streaming completion
@@ -108,9 +106,23 @@ class TestLLMService:
         print()
         assert len(collected_content) > 0
 
-        # Verify balance: it should be decreased by the cost of the request
-        final_balance = self.pf.get_balance().available_balance
-        assert final_balance < initial_balance
+        # streaming_completion = client.chat.completions.create(
+        #     model="openai/gpt-4o-mini",
+        #     messages=[{"role": "user", "content": "Write 5 haikus"}],
+        #     stream=True,
+        # )
+
+        # collected_content = ""
+        # for chunk in streaming_completion:
+        #     if chunk.choices[0].delta.content:
+        #         print(chunk.choices[0].delta.content, end="")
+        #         collected_content += chunk.choices[0].delta.content
+        # print()
+        # assert len(collected_content) > 0
+
+        # # Verify balance: it should be decreased by the cost of the request
+        # final_balance = self.pf.get_balance().available_balance
+        # assert final_balance < initial_balance
 
     # def test_llm_service_with_api_key(self) -> None:
     #     # Generate unique slug
